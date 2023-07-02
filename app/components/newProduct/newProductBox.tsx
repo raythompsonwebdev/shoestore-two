@@ -1,0 +1,58 @@
+import Link from "next/link";
+import Image from "next/image";
+
+export default function NewProductBox(props: {
+  imgUrl: string;
+  name: string;
+  cartImg: string;
+  price: string;
+  text: string;
+}) {
+  const { imgUrl, name, cartImg, price, text } = props;
+  const myComponentStyle = {
+    backgroundImage: "url('/images/product_headline_bg.png')",
+    backgroundPosition: "0% 50%",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  };
+  return (
+    <figure className="larger-product-box">
+      <Image
+        className="larger-product-box-image"
+        src={imgUrl}
+        alt={name}
+        width={175}
+        height={150}
+      />
+      <figcaption className="larger-product-box-caption">
+        <h1 style={myComponentStyle} className="larger-product-box-title">
+          {name}
+        </h1>
+        <p className="larger-product-box-text">{text}</p>
+        <span className="larger-product-box-price">Price :£ {price}</span>
+        <span className="larger-product-box-add-to-cart">
+          <Link href={`/${name}`} className="larger-product-box-link">
+          {/* <Link
+            href={{
+              pathname: "/product/",
+              query: `${name}`,
+
+            }}
+              className="larger-product-box-link"
+              type="submit"
+            > */}
+
+            <Image
+              className="larger-product-box-icon"
+              src={cartImg}
+              alt="shopping-cart icon"
+              width="34"
+              height="48"
+            />
+          </Link>{" "}
+          Add to Cart
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
