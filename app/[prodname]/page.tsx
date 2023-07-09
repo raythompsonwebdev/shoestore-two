@@ -5,7 +5,7 @@ import useSWR from "swr";
 import Image from "next/image";
 // import LikesSection from "../../components/LikesSection";
 
-export default async function SingleProduct({params} :any) {
+export default async function SingleProduct({params}:any) {
 
   console.log(params.prodname)
 
@@ -27,11 +27,11 @@ export default async function SingleProduct({params} :any) {
   //   ...singleProduct,
   // };
 
- const singleProduct = data.filter((prod:any) => prod.name === params.prodname ? prod : false)
+ const singleProduct = data.filter((prod:{name:string}) => prod.name === params.prodname ? prod : false)
 
- const result = singleProduct[0];
+ const [result] = [...singleProduct];
 
- console.log(result)
+
 
   return result ? (
     <>

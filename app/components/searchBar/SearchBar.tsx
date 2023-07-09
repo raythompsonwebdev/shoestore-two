@@ -12,12 +12,19 @@ import {
 import { redirect } from 'next/navigation'
 
 
-interface SearchBaror {
-  labelname: string;
-  searchBarData: Array<any>;
+type SearchBarProps =  {
+  labelname: string
+  searchBarData: []
 }
 
-export default function SearchBar(props: SearchBaror) {
+type SearchDataProps = {
+  _id:string
+  id:number
+  name:string
+  options: []
+}
+
+export default function SearchBar(props: SearchBarProps) {
   const { labelname, searchBarData } = props;
 
   const [genderVal, setGenderVal] = useState<string>(" ");
@@ -25,31 +32,31 @@ export default function SearchBar(props: SearchBaror) {
   const [styleVal, setStyleVal] = useState<string>(" ");
   const [colorVal, setColorVal] = useState<string>(" ");
 
-  const genderHandler = (event: { target: any }) => {
+  const genderHandler = (event: { target: {value :string} }) :void => {
     const { target } = event;
     const { value } = target;
     setGenderVal(value);
   };
 
-  const styleHandler = (event: { target: any }) => {
+  const styleHandler = (event: { target: {value :string} }) :void => {
     const { target } = event;
     const { value } = target;
     setStyleVal(value);
   };
 
-  const sizeHandler = (event: { target: any }) => {
+  const sizeHandler = (event: { target: {value :string} }) :void => {
     const { target } = event;
     const { value } = target;
     setSizeVal(value);
   };
 
-  const colorHandler = (event: { target: any }) => {
+  const colorHandler = (event: { target: {value :string} }) :void => {
     const { target } = event;
     const { value } = target;
     setColorVal(value);
   };
 
-  const resultArray = [genderVal, styleVal, sizeVal, colorVal];
+  //const resultArray : [] = [genderVal, styleVal, sizeVal, colorVal];
 
   const SearchFormData :any = document.querySelector("#search-category-form");
 
@@ -72,7 +79,7 @@ export default function SearchBar(props: SearchBaror) {
 
   };
 
-  const [gender, style, size, color] = searchBarData;
+  const [gender, style, size, color] :SearchDataProps[]  = searchBarData ;
 
 
   const aria = "search-category-label";

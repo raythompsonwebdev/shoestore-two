@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 import clientPromise from "../../../lib/mongodb";
-// import sanitize from "mongo-sanitize";
+
 
 export async function GET(request: Request) {
+
+  if(request.method !== 'GET'){
+    return NextResponse.json({ message: 'Only GET requests allowed' })
+  }
 
   try {
     //await clientPromise

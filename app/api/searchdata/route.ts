@@ -4,7 +4,12 @@ import sanitize from "mongo-sanitize";
 
 export async function GET(request: Request) {
 
-  const body = sanitize(request.body);
+
+  if(request.method !== 'GET'){
+    return NextResponse.json({ message: 'Only GET requests allowed' })
+  }
+
+const body = sanitize(request.body);
 
 // const [val1,val2,val3,val4] = context.query.resultArray
 

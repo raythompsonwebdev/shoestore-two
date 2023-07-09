@@ -3,6 +3,12 @@ import clientPromise from "../../../lib/mongodb";
 import sanitize from "mongo-sanitize";
 
 export async function POST(request: any) {
+
+
+  if(request.method !== 'GET'){
+    return NextResponse.json({ message: 'Only GET requests allowed' })
+  }
+
   const product = sanitize(request.body.product);
 
   try {

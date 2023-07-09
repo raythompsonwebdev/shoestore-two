@@ -1,9 +1,10 @@
 // import PropTypes from "prop-types";
 import { Key } from "react";
 import ProductBox from "./specialsProductBox";
+import {Product} from "../../../types/index"
 
 export default function SpecialsProductBoxes(props: {
-  productData: Array<any>;
+  productData: Product[];
 }) {
   const { productData } = props;
 

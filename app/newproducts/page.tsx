@@ -6,16 +6,22 @@ import AccordianMenu from "../components/accordianMenu";
 import SearchBar from "../components/searchBar/SearchBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+type NewProductsData = {
+  product: [];
+  accordian: [];
+  searchresults :[];
+}
+
 export default function NewProducts() {
 
-  const [productData, setProductData] = useState<Array<any>>([]);
-  const [accordianData, setAccordiantData] = useState<Array<string>>([]);
-  const [searchbarData, setSearchBarData] = useState<Array<string>>([]);
+  const [productData, setProductData] = useState<[]>([]);
+  const [accordianData, setAccordiantData] = useState<[]>([]);
+  const [searchbarData, setSearchBarData] = useState<[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/newproductsdata");
-      const json = await res.json();
+      const json : NewProductsData = await res.json();
       if (json) {
         setProductData(json.product);
         setAccordiantData(json.accordian)

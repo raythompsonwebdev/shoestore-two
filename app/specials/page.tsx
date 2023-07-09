@@ -5,16 +5,18 @@ import SpecialsProductBoxes from "../components/specials/specialsProductBoxes";
 import AccordianMenu from "../components/accordianMenu";
 import SearchBar from "../components/searchBar/SearchBar";
 import SearchSelect from "../components/searchSelect/SearchSelect";
+import {FilteredData , AllData} from "../../types/index"
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 
 export default async function Specials() {
 
 
-  const [productData, setProductData] = useState<Array<any>>([]);
-  const [accordianData, setAccordiantData] = useState<Array<any>>([]);
-  const [searchBarData, setSearchBarData] = useState<Array<any>>([])
-  const [selectBarData, setSelectData] = useState<Array<any>>([]);
+  const [productData, setProductData] = useState<Array<FilteredData>>([]);
+  const [accordianData, setAccordiantData] = useState<[]>([]);
+  const [searchBarData, setSearchBarData] = useState<[]>([])
+  const [selectBarData, setSelectData] = useState<[]>([]);
   const [OrderDir, setOrderByDir] = useState<string>("asc");
   const [OrderByVal, setOrderByVal] = useState<string>("all");
   const [visibility, setVisibility] = useState<boolean>(false);
@@ -22,7 +24,7 @@ export default async function Specials() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/allproductsdata");
-      const json = await res.json();
+      const json :AllData = await res.json();
       if (json) {
         setProductData(json.product);
         setAccordiantData(json.accordian)
@@ -56,14 +58,7 @@ export default async function Specials() {
   const value = OrderByVal;
 
   filteredApts = filteredApts.filter(
-    (item: {
-      [x: string]: any;
-      color: string;
-      style: string;
-      size: string;
-      gender: string;
-      price: string;
-    }) => {
+    (item) => {
       if (
         item.color === value ||
         item.style === value ||

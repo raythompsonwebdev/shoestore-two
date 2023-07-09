@@ -7,17 +7,21 @@ import AccordianMenu from './components/accordianMenu'
 import FindShoes from './components/homepage/FindShoes'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+type HomePageProds = {
+  product: []
+  accordian: []
+}
 
 export default function Home() {
 
-  const [accordianData, setAccordiantData] = useState<Array<any>>([])
-  const [productData, setProductData] = useState<Array<any>>([])
+  const [accordianData, setAccordiantData] = useState<[]>([])
+  const [productData, setProductData] = useState<[]>([])
   const [visibility, setVisibility] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/newproductsdata");
-      const json = await res.json();
+      const json : HomePageProds = await res.json();
       if (json) {
         setProductData(json.product);
         setAccordiantData(json.accordian)
