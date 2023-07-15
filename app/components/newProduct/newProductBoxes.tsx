@@ -1,10 +1,23 @@
+"use client";
 import { Key } from "react";
 import NewProductBox from "./newProductBox";
+import  useSWR  from 'swr';
 
-export default function newProductBoxes(props: { productData: [] }) {
-  const { productData } = { ...props };
+const fetcher = (url:string) => fetch(url).then((res) => res.json());
 
-  const NewProduct = productData
+export default function NewProductBoxes() {
+
+  const { data , error, isLoading } = useSWR(
+    "/api/productsdata",
+    fetcher
+  );
+
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
+
+ const { product } =  data ;
+
+  const NewProduct = product
     .slice(0, 6)
     .map(
       (item: {

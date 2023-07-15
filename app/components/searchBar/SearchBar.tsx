@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from "react";
-// import Link from "next/link";
 import {
   SelectGender,
   SelectColor,
@@ -10,11 +9,13 @@ import {
 } from "./SearchBarData";
 // import { searchProducts } from '../../actions'
 import { redirect } from 'next/navigation'
+import  useSWR  from 'swr';
+
+const fetcher = (url:string) => fetch(url).then((res) => res.json());
 
 
 type SearchBarProps =  {
-  labelname: string
-  searchBarData: []
+  labelname: string;
 }
 
 type SearchDataProps = {
@@ -25,12 +26,22 @@ type SearchDataProps = {
 }
 
 export default function SearchBar(props: SearchBarProps) {
-  const { labelname, searchBarData } = props;
 
-  const [genderVal, setGenderVal] = useState<string>(" ");
-  const [sizeVal, setSizeVal] = useState<string>(" ");
-  const [styleVal, setStyleVal] = useState<string>(" ");
-  const [colorVal, setColorVal] = useState<string>(" ");
+   const [genderVal, setGenderVal] = useState<string>(" ");
+   const [styleVal, setStyleVal] = useState<string>(" ");
+   const [sizeVal, setSizeVal] = useState<string>(" ");
+   const [colorVal, setColorVal] = useState<string>(" ");
+
+  const { data , error, isLoading } = useSWR(
+    "/api/searchbardata",
+    fetcher
+  );
+
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
+
+
+ const [gender, style, size, color] :SearchDataProps[]  = data.searchresults ;
 
   const genderHandler = (event: { target: {value :string} }) :void => {
     const { target } = event;
@@ -56,8 +67,6 @@ export default function SearchBar(props: SearchBarProps) {
     setColorVal(value);
   };
 
-  //const resultArray : [] = [genderVal, styleVal, sizeVal, colorVal];
-
   const SearchFormData :any = document.querySelector("#search-category-form");
 
   const submit = (event: { preventDefault: () => void }) => {
@@ -79,15 +88,13 @@ export default function SearchBar(props: SearchBarProps) {
 
   };
 
-  const [gender, style, size, color] :SearchDataProps[]  = searchBarData ;
-
 
   const aria = "search-category-label";
   return (
     <aside id="search-category">
       <form id="search-category-form" onSubmit={submit}>
         <fieldset>
-          <legend id="search-category-label">{labelname}</legend>
+          <legend id="search-category-label">{props.labelname}</legend>
           <SelectGender
             name="genderVal"
             genders={gender}

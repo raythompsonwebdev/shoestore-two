@@ -1,10 +1,28 @@
+"use client";
 import { Key } from "react";
 import HomePageBox from "./homePageBox";
+import  useSWR  from 'swr';
 
-export default function HomePageBoxes(props: { productData: Array<any> }) {
-  const { productData } = { ...props };
+const fetcher = (url:string) => fetch(url).then((res) => res.json());
 
-  const NewProduct = productData
+// export default function HomePageBoxes(props: { productData: Array<any> }) {
+  export default function HomePageBoxes() {
+
+  const { data , error, isLoading } = useSWR(
+    "/api/productsdata",
+    fetcher
+  );
+
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
+
+
+ const { product } =  data ;
+
+
+  // const { productData } = { ...props };
+
+  const NewProduct = product
     .slice(0, 8)
     .map(
       (item: {

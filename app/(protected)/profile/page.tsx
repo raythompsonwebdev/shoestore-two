@@ -1,11 +1,17 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../options";
+import { authOptions } from "../../api/auth/[...nextauth]/options";
 import AccessDenied from "../../components/access-denied";
 import Image from "next/image";
+import { cookies } from 'next/headers'
+
 
 export default async function Profile() {
 
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession( authOptions);
+
+  const cookieStore = cookies()
+
+  console.log(cookieStore.get('next-auth.session-token'))
 
   // If no session exists, display access denied message
 

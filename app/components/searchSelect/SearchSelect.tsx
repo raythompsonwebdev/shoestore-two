@@ -12,6 +12,7 @@ interface SearchSelector {
 
 
 export default function SearchSelect(props: SearchSelector) {
+
   const { selectBarData, changesOrders, handleChange, orderDir } = props;
 
   function onItemChange(e: { target: { value: string } }) {

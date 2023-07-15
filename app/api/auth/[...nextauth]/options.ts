@@ -2,12 +2,14 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import GitHubProvider from "next-auth/providers/github";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "../lib/mongodb";
-import { connectToMongoDB } from "../lib/dbConnect";
-import User from "../models/users";
-import { IUser } from "../types";
-import { comparePassword } from "../lib/hashPassword";
-import {signJwtAccessToken} from "../lib/jwt"
+import clientPromise from "../../../../lib/mongodb";
+import { connectToMongoDB } from "../../../../lib/dbConnect";
+import User from "../../../../models/users";
+// import { IUser } from "../../../../types";
+import { comparePassword } from "../../../../lib/hashPassword";
+import jwt from "jsonwebtoken";
+import { JWT } from "next-auth/jwt";
+// import {signJwtAccessToken} from "../../../../lib/jwt"
 
 
 export const authOptions: NextAuthOptions = {
@@ -51,26 +53,9 @@ export const authOptions: NextAuthOptions = {
           user.password
         );
 
-        if (isPasswordCorrect) {
-
-          const accessToken = signJwtAccessToken(
-            {
-              user: {
-                name: user.name,
-                email: user.email,
-              },
-            }
-          );
-
-          user.accessToken = accessToken;
-
-        } else {
-          throw new Error("Password is not valid");
+        if (!isPasswordCorrect) {
+          throw new Error("Invalid credentials");
         }
-
-        // if (!isPasswordCorrect) {
-        //   throw new Error("Invalid credentials");
-        // }
 
         if (user) {
 
@@ -90,12 +75,22 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   jwt: {
     // The maximum age of the NextAuth.js issued JWT in seconds.
     // Defaults to `session.maxAge`.
-    maxAge: 60 * 60 * 24 * 14,
-
-
+    encode: ({ secret, token }) => {
+      const encodedToken = jwt.sign(token!, secret, {
+        algorithm: "HS256",
+      });
+      return encodedToken;
+    },
+    decode: async ({ secret, token }) => {
+      const decodedToken = jwt.verify(token!, secret, {
+        algorithms: ["HS256"],
+      });
+      return decodedToken as JWT;
+    },
   },
   callbacks: {
 

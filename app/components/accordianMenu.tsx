@@ -1,24 +1,38 @@
 'use client';
-
+import useSWR from 'swr';
 import { Accordion } from "react-bootstrap";
 
 type AccordianProp = {
-  _id:string
-  id:number;
-  title:string;
-  items:[]
-
+  accordian:[
+    {
+      _id:string
+      id:number;
+      title:string;
+      items:[]
+    }
+  ]
 }
 
+const fetcher = (url:string) => fetch(url).then((res) => res.json());
 // eslint-disable-next-line func-style
-export default function AccordianMenu(props: { accordianData: AccordianProp[] }) {
-  const { accordianData } = { ...props };
+// export default function AccordianMenu(props: { accordianData: AccordianProp[] }) {
+export default function AccordianMenu() {
+
+  const { data , error, isLoading } = useSWR(
+    "/api/accordiandata",
+    fetcher
+  );
+
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
+
+ const { accordian } : AccordianProp =  data ;
 
   return (
     <Accordion defaultActiveKey={["0"]} alwaysOpen>
       <nav id="accordian-nav" aria-label="secondary">
         <div id="accordian-nav-container">
-          {accordianData.map((element: {_id:string, title:string, items:[]}) => (
+          {accordian.map((element: {_id:string, title:string, items:[]}) => (
             <Accordion.Item eventKey={element._id} key={element._id}>
               <Accordion.Header>{element.title}</Accordion.Header>
               <Accordion.Body>

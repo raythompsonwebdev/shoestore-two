@@ -27,7 +27,7 @@ export default function LoginForm() {
       const loginRes = await loginUser({ email, password });
 
       if (loginRes && !loginRes.ok) {
-        console.log(loginRes.error || "");
+        console.log(loginRes.error || "Login OK");
       } else {
         router.push("/profile");
       }

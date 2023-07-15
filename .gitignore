@@ -43,3 +43,7 @@ app/actions.ts
 public/js/
 public/font/
 app/components/Basket.tsx
+
+app/api/homepagedata/
+app/api/searchdata/
+app/api/newproductsdata/
