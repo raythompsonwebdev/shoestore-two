@@ -1,15 +1,18 @@
 import { NextResponse } from "next/server";
 import clientPromise from "../../../lib/mongodb";
-import sanitize from "mongo-sanitize";
+
+// type Like = {
+//   likes?: number,
+// }
 
 export async function GET(request: Request) {
 
+  //const data: Like = await request.json()
+  //console.log('data: ', data)
 
   if(request.method !== 'GET'){
     return NextResponse.json({ message: 'Only GET requests allowed' })
   }
-
-const body = sanitize(request.body);
 
 // const [val1,val2,val3,val4] = context.query.resultArray
 

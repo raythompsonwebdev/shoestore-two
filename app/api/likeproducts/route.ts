@@ -1,15 +1,24 @@
 import { NextResponse } from "next/server";
 import clientPromise from "../../../lib/mongodb";
+import type { NextRequest } from 'next/server'
 import sanitize from "mongo-sanitize";
 
-export async function POST(request: any) {
+// type Like = {
+//   likes?: number,
+// }
 
+export async function POST(request: NextRequest) {
 
-  if(request.method !== 'GET'){
-    return NextResponse.json({ message: 'Only GET requests allowed' })
+  //const data: Like = await request.json()
+  //console.log('data: ', data)
+
+  if(request.method !== 'POST'){
+    return NextResponse.json({ message: 'Only POST requests allowed' })
   }
 
-  const product = sanitize(request.body.product);
+  const {product} :any = {...request.body};
+
+  const sanitizedProduct = sanitize(product);
 
   try {
     const client = await clientPromise;
@@ -17,11 +26,11 @@ export async function POST(request: any) {
 
     const productsInfo = await db
       .collection("products")
-      .findOne({ name: product });
+      .findOne({ name: sanitizedProduct });
 
     // The optional chaining operator (?.)-fixes object is possible null error for productsInfo variable. The non-null assertion operator (!.) or the nullish coalescing operator (??) & if (typeof myName === 'string').
     await db.collection("products").updateOne(
-      { name: product },
+      { name: sanitizedProduct },
       {
         $set: {
           likes: productsInfo?.likes + 1,
@@ -31,7 +40,7 @@ export async function POST(request: any) {
 
     const updatedProductInfo = await db
       .collection("products")
-      .findOne({ name: product });
+      .findOne({ name: sanitizedProduct });
 
     return NextResponse.json({ updatedProductInfo });
   } catch (err) {

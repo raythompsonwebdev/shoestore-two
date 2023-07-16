@@ -14,7 +14,7 @@ export default function Allproducts() {
 
         <main id="right-content-section" className="group">
 
-< AllProducts />
+        < AllProducts />
 
         </main>
       </main>

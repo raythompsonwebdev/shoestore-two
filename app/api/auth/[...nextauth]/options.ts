@@ -7,9 +7,7 @@ import { connectToMongoDB } from "../../../../lib/dbConnect";
 import User from "../../../../models/users";
 // import { IUser } from "../../../../types";
 import { comparePassword } from "../../../../lib/hashPassword";
-import jwt from "jsonwebtoken";
-import { JWT } from "next-auth/jwt";
-// import {signJwtAccessToken} from "../../../../lib/jwt"
+// import {signJwtAccessToken, verifyJwt} from "../../../../lib/jwt"
 
 
 export const authOptions: NextAuthOptions = {
@@ -53,6 +51,23 @@ export const authOptions: NextAuthOptions = {
           user.password
         );
 
+        // if (isPasswordCorrect) {
+
+        //   const accessToken = signJwtAccessToken(
+        //     {
+        //       user: {
+        //         name: user.name,
+        //         email: user.email,
+        //       },
+        //     }
+        //   );
+
+        //   user.accessToken = accessToken;
+
+        // } else {
+        //   throw new Error("Password is not valid");
+        // }
+
         if (!isPasswordCorrect) {
           throw new Error("Invalid credentials");
         }
@@ -77,20 +92,11 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
+    secret: process.env.SECRET_KEY,
     // The maximum age of the NextAuth.js issued JWT in seconds.
     // Defaults to `session.maxAge`.
-    encode: ({ secret, token }) => {
-      const encodedToken = jwt.sign(token!, secret, {
-        algorithm: "HS256",
-      });
-      return encodedToken;
-    },
-    decode: async ({ secret, token }) => {
-      const decodedToken = jwt.verify(token!, secret, {
-        algorithms: ["HS256"],
-      });
-      return decodedToken as JWT;
-    },
+    maxAge: 60 * 60 * 24 * 30,
+
   },
   callbacks: {
 

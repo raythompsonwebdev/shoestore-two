@@ -14,8 +14,7 @@ type AccordianProp = {
 }
 
 const fetcher = (url:string) => fetch(url).then((res) => res.json());
-// eslint-disable-next-line func-style
-// export default function AccordianMenu(props: { accordianData: AccordianProp[] }) {
+
 export default function AccordianMenu() {
 
   const { data , error, isLoading } = useSWR(
