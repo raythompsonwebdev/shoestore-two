@@ -1,10 +1,4 @@
-import {
-  Key,
-  // ReactElement,
-  // JSXElementConstructor,
-  // ReactFragment,
-  // ReactPortal,
-} from "react";
+import React,{ Key }from "react";
 
 interface OptionsProp {
   _id:string

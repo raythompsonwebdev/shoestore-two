@@ -1,4 +1,4 @@
-import { Key } from "react";
+import React, { Key } from "react";
 import ProductBox from "./allProductBox";
 import {Product} from "../../../types/index"
 

@@ -47,3 +47,4 @@ app/components/Basket.tsx
 app/api/homepagedata/
 app/api/searchdata/
 app/api/newproductsdata/
+lib/getAccordian.ts

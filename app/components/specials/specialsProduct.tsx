@@ -1,6 +1,6 @@
 'use client';
 
-import { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import SpecialsProductBoxes from "../specials/specialsProductBoxes";
 import SearchSelect from "../searchSelect/SearchSelect";
 import {FilteredData , AllData} from "../../../types/index"

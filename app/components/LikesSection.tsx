@@ -1,19 +1,22 @@
 "use client";
-
-
-// export default function LikesSection(props: any) {
-//   const { likes, productName, setProductInfo }: any = { ...props };
+import React from 'react';
+import { useState } from "react";
 
 type LikesType ={
-  likes:number;
+  //likes:number;
   prodid?:string | undefined;
-  productName:string | string[] | undefined;
-  setProductInfo: ( likes: {likes:number}) => void;
+  //productName:string | string[] | undefined;
+  //setProductInfo: ( likes: {likes:number}) => void;
 }
 
 export default function LikesSection(props:LikesType ) {
 
-  const { likes, productName, setProductInfo } = { ...props }
+
+ //const [productInfo, setProductInfo] = useState({ likes: 0 });
+
+  //const { likes, productName, setProductInfo } = { ...props }
+
+  const { prodId }: any = { ...props }
 
   const likeProduct = async () => {
     try {
@@ -22,11 +25,11 @@ export default function LikesSection(props:LikesType ) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ likes: likes, product: productName }),
+       // body: JSON.stringify({ likes: likes, product: productName }),
       });
       const result = await response.json();
 
-      setProductInfo({ likes: result.likes });
+      //setProductInfo({ likes: result.likes });
     } catch (err) {
       console.error("not working : " + err);
     }
@@ -43,9 +46,9 @@ export default function LikesSection(props:LikesType ) {
       >
         Add Like
       </button>
-      <p className="upvotes-section-text">
+      {/* <p className="upvotes-section-text">
         This product has {likes} likes so far !
-      </p>
+      </p> */}
     </div>
   );
 }

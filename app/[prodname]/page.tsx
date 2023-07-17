@@ -1,16 +1,14 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client';
-// import { useState } from "react";
+import React from 'react';
 import useSWR from "swr";
 import Image from "next/image";
-// import LikesSection from "../../components/LikesSection";
+import LikesSection from "../components/LikesSection";
 
 export default async function SingleProduct({params}:any) {
 
   console.log(params.prodname)
 
   // const [singleProduct] = useState(product);
-  // const [productInfo, setProductInfo] = useState({ likes: 0 });
 
   const fetcher = (url: RequestInfo | URL) => fetch(url).then(res => res.json())
 
@@ -19,8 +17,29 @@ export default async function SingleProduct({params}:any) {
     fetcher
   );
 
-  if (error) return <div>Failed to fetch users.</div>
-    if (isLoading) return <h2>Loading...</h2>
+  if (error) return  (
+                      <>
+                        <main id="main-content" className="clearfix">
+                          <h1 id="main-content-title">Product Not Found</h1>
+                          <figure id="product-page-box">
+                            <figcaption id="product-page-caption">
+                              <p className="product-page-title">Product Not Found</p>
+                            </figcaption>
+                          </figure>
+                        </main>
+                      </>
+                    );
+
+  if (isLoading) return <>
+                          <main id="main-content" className="clearfix">
+                            <h1 id="main-content-title">Loading ....</h1>
+                            <figure id="product-page-box">
+                              <figcaption id="product-page-caption">
+                                <p className="product-page-title">Loading ...</p>
+                              </figcaption>
+                            </figure>
+                          </main>
+                        </>
 
 
   // const { _id, color, imgUrl, name, price, size, style, text }: any = {
@@ -31,9 +50,7 @@ export default async function SingleProduct({params}:any) {
 
  const [result] = [...singleProduct];
 
-
-
-  return result ? (
+  return result.name === params.prodname && (
     <>
       <main id="main-content" className="clearfix">
         <h1 id="main-content-title">Product Page</h1>
@@ -52,26 +69,15 @@ export default async function SingleProduct({params}:any) {
               <p className="product-page-title">Color : {result.color}</p>
               <p>{result.text}</p>
 
-              {/* <LikesSection
-                likes={productInfo.likes}
-                productName={prodname}
-                setProductInfo={setProductInfo}
-                prodid={_id}
-              /> */}
+              <LikesSection
+                // likes={productInfo.likes}
+                // productName={prodname}
+                // setProductInfo={setProductInfo}
+                //prodid={_id}
+              />
 
               {/* <button onClick={() => onAdd(product)}>Add To Cart</button> */}
             </figcaption>
-        </figure>
-      </main>
-    </>
-  ) : (
-    <>
-      <main id="main-content" className="clearfix">
-        <h1 id="main-content-title">New Product Page</h1>
-        <figure id="product-page-box">
-          <figcaption id="product-page-caption">
-            <p className="product-page-title">product not found</p>
-          </figcaption>
         </figure>
       </main>
     </>

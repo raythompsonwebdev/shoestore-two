@@ -38,7 +38,13 @@ export default function SearchBar(props: SearchBarProps) {
   );
 
   if (error) return "An error has occurred.";
-  if (isLoading) return "Loading...";
+  if (isLoading) return (
+    <aside id="search-category">
+       <form id="search-category-form">
+     {"Loading............"}
+     </form>
+    </aside>
+  );
 
 
  const [gender, style, size, color] :SearchDataProps[]  = data.searchresults ;
@@ -70,21 +76,20 @@ export default function SearchBar(props: SearchBarProps) {
   const SearchFormData :any = document.querySelector("#search-category-form");
 
   const submit = (event: { preventDefault: () => void }) => {
+
     event.preventDefault();
-    const formData = new FormData(SearchFormData);
+
+    const formData: any = new FormData(SearchFormData);
 
     // for(let pair of formData.entries()){
     //   console.log(pair[0], pair[1]);
     // }
-
     const data = [...formData.entries()];
 
     console.log(data);
 
-    if (data) {
-      redirect('/search')
-    }
 
+      redirect('/search')
 
   };
 
@@ -135,7 +140,7 @@ export default function SearchBar(props: SearchBarProps) {
           >
             <button name="find">Go</button>
           </Link> */}
-          <input type="submit" className="search-category-btn" value="Send" name="submit" />
+          {/* <input type="submit" className="search-category-btn" value="Send" name="submit" /> */}
         </fieldset>
       </form>
     </aside>

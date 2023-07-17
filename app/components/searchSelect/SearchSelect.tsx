@@ -1,6 +1,6 @@
 "use client";
 
-import { Key } from "react";
+import React, { Key } from "react";
 
 interface SearchSelector {
   selectBarData: []

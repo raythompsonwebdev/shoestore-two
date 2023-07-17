@@ -1,3 +1,4 @@
+import React from 'react';
 import NewProductBoxes from "../components/newProduct/newProductBoxes";
 import SearchBar from "../components/searchBar/SearchBar";
 import "bootstrap/dist/css/bootstrap.min.css";

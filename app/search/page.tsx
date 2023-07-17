@@ -1,6 +1,6 @@
 'use client';
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import React from 'react';
+// import { useState } from "react";
 // import LikesSection from "../components/LikesSection";
 import Image from "next/image";
 import { useSearchParams } from 'next/navigation'
@@ -9,6 +9,12 @@ import useSWR from "swr";
 
 export default async function SearchProduct() {
 
+  const searchParams = useSearchParams()
+
+  const resultArray = searchParams.getAll('resultArray');
+
+  // deconstruct search result array with product details
+  const [size1, color1, gender1, style1]: any = resultArray;
 
   // useEffect(() => {
   //   fetch('https://api.example.com/data')
@@ -29,12 +35,6 @@ export default async function SearchProduct() {
   // const [products] = useState(productsearch);
   //const [productInfo, setProductInfo] = useState({ likes: 0 });
 
-  const searchParams = useSearchParams()
-
-  const resultArray = searchParams.getAll('resultArray');
-
-  // deconstruct search result array with product details
-  const [size1, color1, gender1, style1]: any = resultArray;
 
   // filter product from the products array
   const product = data.filter(

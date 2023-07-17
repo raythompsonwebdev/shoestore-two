@@ -1,4 +1,5 @@
 "use client";
+import React from 'react';
 
 const myComponentStyle = {
   backgroundImage: "url('/images/form-bg-comp.png')",

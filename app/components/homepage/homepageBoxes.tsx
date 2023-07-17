@@ -1,5 +1,5 @@
 "use client";
-import { Key } from "react";
+import React, { Key } from "react";
 import HomePageBox from "./homePageBox";
 import  useSWR  from 'swr';
 

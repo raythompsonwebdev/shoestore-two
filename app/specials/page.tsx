@@ -1,7 +1,7 @@
+import React from 'react';
 import SearchBar from "../components/searchBar/SearchBar";
 import SideBar from '../components/sideBar/sideBar'
 import SpecialsProducts from "../components/specials/specialsProduct";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 
 export default async function Specials() {

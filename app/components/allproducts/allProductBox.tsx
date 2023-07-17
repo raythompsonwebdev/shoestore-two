@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Key } from "react";
+import React, { Key } from "react";
 
 export default function productBox(props: {
   imgUrl: Key | null | undefined;

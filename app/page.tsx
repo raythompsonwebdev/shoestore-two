@@ -1,8 +1,7 @@
+import React from 'react';
 import BannerImg from "./components/homepage/bannerImg";
 import HomePageBoxes from './components/homepage/homepageBoxes'
 import SideBar from './components/sideBar/sideBar'
-import 'bootstrap/dist/css/bootstrap.min.css'
-
 
 export default function Home() {
 

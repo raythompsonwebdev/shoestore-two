@@ -1,7 +1,7 @@
+import React from 'react';
 import SearchBar from "../components/searchBar/SearchBar";
 import SideBar from '../components/sideBar/sideBar'
 import AllProducts from '../components/allproducts/allProducts'
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Allproducts() {
 

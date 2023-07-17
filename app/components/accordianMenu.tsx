@@ -1,6 +1,8 @@
 'use client';
+import React from 'react';
 import useSWR from 'swr';
 import { Accordion } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 type AccordianProp = {
   accordian:[
@@ -23,7 +25,15 @@ export default function AccordianMenu() {
   );
 
   if (error) return "An error has occurred.";
-  if (isLoading) return "Loading...";
+  if (isLoading) return (
+    <Accordion defaultActiveKey={["0"]} alwaysOpen>
+      <nav id="accordian-nav" aria-label="secondary">
+        <div id="accordian-nav-container">
+        {"Loading...."}
+        </div>
+      </nav>
+    </Accordion>
+  );
 
  const { accordian } : AccordianProp =  data ;
 
