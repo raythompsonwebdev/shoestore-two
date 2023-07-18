@@ -4,7 +4,7 @@ import useSWR from "swr";
 import Image from "next/image";
 import LikesSection from "../components/LikesSection";
 
-export default async function SingleProduct({params}:any) {
+export default function SingleProduct({params}:any) {
 
   console.log(params.prodname)
 

@@ -11,7 +11,7 @@ export default async function Profile() {
   // const cookieStore = cookies()
   // const theme = cookieStore.get('next-auth.session-token')
 
-    return session?.user ? (
+    return session ? (
       <>
         <main id="main-content" className="clearfix">
           <h1 id="main-content-title">Profile</h1>

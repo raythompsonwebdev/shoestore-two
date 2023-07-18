@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import useSWR from "swr";
 
 
-export default async function SearchProduct() {
+export default function SearchProduct() {
 
   const searchParams = useSearchParams()
 
