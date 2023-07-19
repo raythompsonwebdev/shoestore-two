@@ -11,16 +11,12 @@ export default function SearchProduct() {
 
   const searchParams = useSearchParams()
 
-  const resultArray = searchParams.getAll('resultArray');
+  const genderParam = searchParams.get('genderVal');
+  const styleParam = searchParams.get('styleVal');
+  const sizeParam = searchParams.get('sizerVal');
+  const colorParam = searchParams.get('colorVal');
 
-  // deconstruct search result array with product details
-  const [size1, color1, gender1, style1]: any = resultArray;
-
-  // useEffect(() => {
-  //   fetch('https://api.example.com/data')
-  //     .then(res => res.json())
-  //     .then(data => setData(data));
-  // }, []);
+  console.log(searchParams);
 
   const fetcher = (url: RequestInfo | URL) => fetch(url).then(res => res.json())
 
@@ -35,20 +31,16 @@ export default function SearchProduct() {
   // const [products] = useState(productsearch);
   //const [productInfo, setProductInfo] = useState({ likes: 0 });
 
-
   // filter product from the products array
   const product = data.filter(
     (product: any) =>
-      product.size === size1 ||
-      product.color === color1 ||
-      product.gender === gender1 ||
-      product.style === style1 ? product: false
+      product.size === sizeParam ||
+      product.color === colorParam ||
+      product.gender === genderParam ||
+      product.style === styleParam ? product: false
   );
 
-  console.log(resultArray, product)
-
-  //const product = null; // place holder code
-//  console.log(product);
+//const product = null; // placeholder
 
   return product ? (
     <>
@@ -83,11 +75,6 @@ export default function SearchProduct() {
     </>
   ) : (
     <>
-      {/* <Head>
-          <title>Single Search Product</title>
-          <meta name="description" content="Search Product - All" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head> */}
       <main id="main-content" className="clearfix">
         <h1 id="main-content-title">Search Products page</h1>
         <figure id="product-page-box">

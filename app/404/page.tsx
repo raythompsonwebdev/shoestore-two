@@ -1,11 +1,13 @@
+"use client";
+
 import React from 'react';
 import Link from "next/link";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Not Found page",
-  description: "Raymond's Page",
-};
+// export const metadata: Metadata = {
+//   title: "Not Found page",
+//   description: "Raymond's Page",
+// };
 
 export default function NotFound() {
   return (

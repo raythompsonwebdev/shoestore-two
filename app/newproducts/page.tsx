@@ -3,8 +3,12 @@ import NewProductBoxes from "../components/newProduct/newProductBoxes";
 import SearchBar from "../components/searchBar/SearchBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SideBar from '../components/sideBar/sideBar'
+import getProducts from '../../lib/getProducts'
+import {Product} from "../../types/index"
 
-export default function NewProducts() {
+export default async function NewProducts() {
+
+  const data : [] = await getProducts()
 
   return (
     <>
@@ -15,7 +19,7 @@ export default function NewProducts() {
 
         <section id="right-content-section">
 
-          <NewProductBoxes />
+          <NewProductBoxes productData={data}/>
 
           <br />
           <br />

@@ -46,8 +46,10 @@ export default function SearchBar(props: SearchBarProps) {
     </aside>
   );
 
+  // const resultArray : string[] = [genderVal, styleVal, sizeVal, colorVal]
 
- const [gender, style, size, color] :SearchDataProps[]  = data.searchresults ;
+ const [size, color, gender, style] :SearchDataProps[]  = data.searchresults ;
+
 
   const genderHandler = (event: { target: {value :string} }) :void => {
     const { target } = event;
@@ -76,20 +78,17 @@ export default function SearchBar(props: SearchBarProps) {
   const SearchFormData :any = document.querySelector("#search-category-form");
 
   const submit = (event: { preventDefault: () => void }) => {
-
-    event.preventDefault();
+    //event.preventDefault();
 
     const formData: any = new FormData(SearchFormData);
-
     // for(let pair of formData.entries()){
     //   console.log(pair[0], pair[1]);
     // }
+
     const data = [...formData.entries()];
 
     console.log(data);
 
-
-      redirect('/search')
 
   };
 
@@ -97,7 +96,7 @@ export default function SearchBar(props: SearchBarProps) {
   const aria = "search-category-label";
   return (
     <aside id="search-category">
-      <form id="search-category-form" onSubmit={submit}>
+      <form id="search-category-form" action="/search" onSubmit={submit}>
         <fieldset>
           <legend id="search-category-label">{props.labelname}</legend>
           <SelectGender
@@ -140,7 +139,7 @@ export default function SearchBar(props: SearchBarProps) {
           >
             <button name="find">Go</button>
           </Link> */}
-          {/* <input type="submit" className="search-category-btn" value="Send" name="submit" /> */}
+          <input type="submit" className="search-category-btn" value="Send" name="submit" />
         </fieldset>
       </form>
     </aside>
