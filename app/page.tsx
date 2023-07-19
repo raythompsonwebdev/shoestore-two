@@ -5,6 +5,11 @@ import SideBar from './components/sideBar/sideBar'
 import getProducts from '../lib/getProducts'
 import {Product} from "../types/index"
 
+export const metadata = {
+  title: 'Shoestore Home',
+  description: 'latest shoes',
+}
+
 export default async function Home() {
 
   const data : Product[] = await getProducts()

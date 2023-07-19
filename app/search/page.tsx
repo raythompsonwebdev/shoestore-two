@@ -3,9 +3,8 @@ import React from 'react';
 // import { useState } from "react";
 // import LikesSection from "../components/LikesSection";
 import Image from "next/image";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useParams } from 'next/navigation'
 import useSWR from "swr";
-
 
 export default function SearchProduct() {
 
@@ -16,8 +15,6 @@ export default function SearchProduct() {
   const sizeParam = searchParams.get('sizerVal');
   const colorParam = searchParams.get('colorVal');
 
-  console.log(searchParams);
-
   const fetcher = (url: RequestInfo | URL) => fetch(url).then(res => res.json())
 
   const { data, error, isLoading } = useSWR(
@@ -26,12 +23,12 @@ export default function SearchProduct() {
   );
 
   if (error) return <div>Failed to fetch users.</div>
-    if (isLoading) return <h2>Loading...</h2>
+  if (isLoading) return <h2>Loading...</h2>
 
   // const [products] = useState(productsearch);
   //const [productInfo, setProductInfo] = useState({ likes: 0 });
 
-  // filter product from the products array
+  //filter product from the products array
   const product = data.filter(
     (product: any) =>
       product.size === sizeParam ||
@@ -39,6 +36,8 @@ export default function SearchProduct() {
       product.gender === genderParam ||
       product.style === styleParam ? product: false
   );
+
+  // const product : any= [];
 
 //const product = null; // placeholder
 

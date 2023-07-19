@@ -3,6 +3,10 @@ import SearchBar from "../components/searchBar/SearchBar";
 import SideBar from '../components/sideBar/sideBar'
 import SpecialsProducts from "../components/specials/specialsProduct";
 
+export const metadata = {
+  title: 'Specials',
+  description: 'See our special offers',
+}
 
 export default async function Specials() {
 

@@ -1,5 +1,9 @@
-'use client';
 import React from 'react';
+
+export const metadata = {
+  title: 'Faqs',
+  description: 'Faqs page',
+}
 
 export default function Faqs() {
   return (

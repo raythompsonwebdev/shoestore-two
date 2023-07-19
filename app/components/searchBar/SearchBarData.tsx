@@ -1,4 +1,5 @@
-import React,{ Key }from "react";
+'use client';
+import React,{ Key , useState }from "react";
 
 interface OptionsProp {
   _id:string
@@ -7,21 +8,28 @@ interface OptionsProp {
   options:[]
 }
 
+
+
 export function SelectColor(props: {
   aria: string;
-  colorHandler: (event: { target: {value :string} }) => void;
   colors: OptionsProp;
   name: string;
-  value: string;
 }) {
-  const { aria, colorHandler, colors, name, value } = props;
+  const [colorVal, setColorVal] = useState<string>(" ");
+  const { aria, colors, name } = props;
   const { options } = {...colors};
+
+  const colorHandler = (event: { target: {value :string} }) :void => {
+    const { target } = event;
+    const { value } = target;
+    setColorVal(value);
+  };
 
   return (
 
     <select
       name={name}
-      value={value}
+      value={colorVal}
       onChange={colorHandler}
       aria-labelledby={aria}
       className="search-category-input"
@@ -50,17 +58,23 @@ export function SelectColor(props: {
 
 export function SelectGender(props: {
   aria: string;
-  genderHandler: (event: { target: {value :string} }) => void;
   genders: OptionsProp;
   name: string;
-  value: string;
 }) {
-  const { aria, genderHandler, genders, name, value } = props;
+  const [genderVal, setGenderVal] = useState<string>(" ");
+  const { aria, genders, name } = props;
   const { options } = {...genders};
+
+  const genderHandler = (event: { target: {value :string} }) :void => {
+    const { target } = event;
+    const { value } = target;
+    setGenderVal(value);
+  };
+
   return (
     <select
       name={name}
-      value={value}
+      value={genderVal}
       onChange={genderHandler}
       aria-labelledby={aria}
       className="search-category-input"
@@ -88,17 +102,25 @@ export function SelectGender(props: {
 
 export function SelectSize(props: {
   aria: string;
-  sizeHandler: (event: { target: {value :string} }) => void;
+  // sizeHandler: (event: { target: {value :string} }) => void;
   sizes: OptionsProp;
   name: string;
-  value: string;
+
 }) {
-  const { aria, name, sizeHandler, sizes, value } = props;
+  const [sizeVal, setSizeVal] = useState<string>(" ");
+  const { aria, name, sizes } = props;
   const { options } = {...sizes};
+
+  const sizeHandler = (event: { target: {value :string} }) :void => {
+    const { target } = event;
+    const { value } = target;
+    setSizeVal(value);
+  };
+
   return (
     <select
       name={name}
-      value={value}
+      value={sizeVal}
       onChange={sizeHandler}
       aria-labelledby={aria}
       className="search-category-input"
@@ -126,18 +148,26 @@ export function SelectSize(props: {
 
 export function SelectStyle(props: {
   arialabelledby: string;
-  styleHandler: (event: { target: {value :string} }) => void;
+  // styleHandler: (event: { target: {value :string} }) => void;
   styles: OptionsProp;
   name: string;
-  value: string;
+
 }) {
-  const { arialabelledby, name, styleHandler, styles, value } = props;
+  const [styleVal, setStyleVal] = useState<string>(" ");
+  const { arialabelledby, name, styles } = props;
   const { options } = {...styles};
+
+  const styleHandler = (event: { target: {value :string} }) :void => {
+    const { target } = event;
+    const { value } = target;
+    setStyleVal(value);
+  };
+
 
   return (
     <select
       name={name}
-      value={value}
+      value={styleVal}
       onChange={styleHandler}
       aria-labelledby={arialabelledby}
       className="search-category-input"

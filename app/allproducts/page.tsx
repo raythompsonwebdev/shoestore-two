@@ -3,6 +3,11 @@ import SearchBar from "../components/searchBar/SearchBar";
 import SideBar from '../components/sideBar/sideBar'
 import AllProducts from '../components/allproducts/allProducts'
 
+export const metadata = {
+  title: 'All Products',
+  description: 'see all our productss',
+}
+
 export default function Allproducts() {
 
   return (

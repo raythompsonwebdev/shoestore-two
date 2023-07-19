@@ -5,8 +5,8 @@ import { loginUser } from "../../helpers";
 import Link from "next/link";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState<string>(" ");
-  const [password, setPassword] = useState<string>(" ");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const router = useRouter();
 
   const handleEmails = (e: { target: { value: SetStateAction<string> } }) => {

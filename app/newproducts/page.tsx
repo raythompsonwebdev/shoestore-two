@@ -4,7 +4,12 @@ import SearchBar from "../components/searchBar/SearchBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SideBar from '../components/sideBar/sideBar'
 import getProducts from '../../lib/getProducts'
-import {Product} from "../../types/index"
+
+export const metadata = {
+  title: 'New Products',
+  description: 'All our New Products',
+}
+
 
 export default async function NewProducts() {
 

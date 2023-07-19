@@ -8,7 +8,7 @@ import {
   SelectSize,
 } from "./SearchBarData";
 // import { searchProducts } from '../../actions'
-import { redirect } from 'next/navigation'
+import { useRouter } from "next/navigation"
 import  useSWR  from 'swr';
 
 const fetcher = (url:string) => fetch(url).then((res) => res.json());
@@ -27,10 +27,7 @@ type SearchDataProps = {
 
 export default function SearchBar(props: SearchBarProps) {
 
-   const [genderVal, setGenderVal] = useState<string>(" ");
-   const [styleVal, setStyleVal] = useState<string>(" ");
-   const [sizeVal, setSizeVal] = useState<string>(" ");
-   const [colorVal, setColorVal] = useState<string>(" ");
+  const router = useRouter()
 
   const { data , error, isLoading } = useSWR(
     "/api/searchbardata",
@@ -46,49 +43,29 @@ export default function SearchBar(props: SearchBarProps) {
     </aside>
   );
 
-  // const resultArray : string[] = [genderVal, styleVal, sizeVal, colorVal]
+  const [size, color, gender, style] :SearchDataProps[]  = data.searchresults ;
 
- const [size, color, gender, style] :SearchDataProps[]  = data.searchresults ;
-
-
-  const genderHandler = (event: { target: {value :string} }) :void => {
-    const { target } = event;
-    const { value } = target;
-    setGenderVal(value);
-  };
-
-  const styleHandler = (event: { target: {value :string} }) :void => {
-    const { target } = event;
-    const { value } = target;
-    setStyleVal(value);
-  };
-
-  const sizeHandler = (event: { target: {value :string} }) :void => {
-    const { target } = event;
-    const { value } = target;
-    setSizeVal(value);
-  };
-
-  const colorHandler = (event: { target: {value :string} }) :void => {
-    const { target } = event;
-    const { value } = target;
-    setColorVal(value);
-  };
 
   const SearchFormData :any = document.querySelector("#search-category-form");
 
   const submit = (event: { preventDefault: () => void }) => {
-    //event.preventDefault();
 
-    const formData: any = new FormData(SearchFormData);
-    // for(let pair of formData.entries()){
-    //   console.log(pair[0], pair[1]);
-    // }
+    event.preventDefault();
 
-    const data = [...formData.entries()];
+    const formData: FormData = new FormData(SearchFormData);
 
-    console.log(data);
+    //  for(let pair of formData.entries()){
+    //     console.log(pair[0], pair[1]);
+    //   }
 
+    const style : FormDataEntryValue | null = formData.get('styleVal');
+    const gender = formData.get('genderVal');
+    const color = formData.get('colorVal');
+    const size = formData.get('sizeVal');
+
+    router.push(`/search?genderVal=${gender ?? ''}&styleVal=${style ?? ''}&sizeVal=${size ?? ''}&colorVal=${color ?? ''}&submit=Send`)
+
+    return false;
 
   };
 
@@ -96,37 +73,30 @@ export default function SearchBar(props: SearchBarProps) {
   const aria = "search-category-label";
   return (
     <aside id="search-category">
-      <form id="search-category-form" action="/search" onSubmit={submit}>
+      {/* <form id="search-category-form" action="/search" onSubmit={submit}> */}
+      <form id="search-category-form" onSubmit={submit}>
         <fieldset>
           <legend id="search-category-label">{props.labelname}</legend>
           <SelectGender
             name="genderVal"
             genders={gender}
-            value={genderVal}
-            genderHandler={genderHandler}
             aria={aria}
           />
 
           <SelectStyle
             name="styleVal"
             styles={style}
-            value={styleVal}
-            styleHandler={styleHandler}
             arialabelledby={aria}
           />
 
           <SelectSize
             name="sizeVal"
             sizes={size}
-            value={sizeVal}
-            sizeHandler={sizeHandler}
             aria={aria}
           />
           <SelectColor
             name="colorVal"
             colors={color}
-            value={colorVal}
-            colorHandler={colorHandler}
             aria={aria}
           />
           {/* <Link
