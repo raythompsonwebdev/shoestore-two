@@ -25,6 +25,13 @@ type SearchDataProps = {
   options: []
 }
 
+type FormDataprops = {
+    gender :string;
+    style:string;
+    colors:string;
+    size:string;
+}
+
 export default function SearchBar(props: SearchBarProps) {
 
   const router = useRouter()
@@ -45,25 +52,20 @@ export default function SearchBar(props: SearchBarProps) {
 
   const [size, color, gender, style] :SearchDataProps[]  = data.searchresults ;
 
-
-  const SearchFormData :any = document.querySelector("#search-category-form");
-
   const submit = (event: { preventDefault: () => void }) => {
 
     event.preventDefault();
 
+    const SearchFormData = document.querySelector("#search-category-form") as HTMLFormElement;
+
     const formData: FormData = new FormData(SearchFormData);
 
-    //  for(let pair of formData.entries()){
-    //     console.log(pair[0], pair[1]);
-    //   }
-
     const style : FormDataEntryValue | null = formData.get('styleVal');
-    const gender = formData.get('genderVal');
-    const color = formData.get('colorVal');
-    const size = formData.get('sizeVal');
+    const gender : FormDataEntryValue | null = formData.get('genderVal');
+    const color : FormDataEntryValue | null = formData.get('colorVal');
+    const size  : FormDataEntryValue | null = formData.get('sizeVal');
 
-    router.push(`/search?genderVal=${gender ?? ''}&styleVal=${style ?? ''}&sizeVal=${size ?? ''}&colorVal=${color ?? ''}&submit=Send`)
+    router.push(`/search?genderVal=${gender ?? ''}&styleVal=${style ?? ''}&sizeVal=${size ?? ''}&colorVal=${color ?? ''}`)
 
     return false;
 
