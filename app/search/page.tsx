@@ -1,32 +1,26 @@
-'use client';
 import React from 'react';
-// import { useState } from "react";
-// import LikesSection from "../components/LikesSection";
+import LikesSection from "../components/LikesSection";
 import Image from "next/image";
-import { useSearchParams, useParams } from 'next/navigation'
-import useSWR from "swr";
+import getProducts from '../../lib/getProducts'
+import {Product} from "../../types/index"
 
-export default function SearchProduct() {
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-  const searchParams = useSearchParams()
 
-  const genderParam = searchParams.get('genderVal');
-  const styleParam = searchParams.get('styleVal');
-  const sizeParam = searchParams.get('sizerVal');
-  const colorParam = searchParams.get('colorVal');
+export default async function SearchProduct(props:Props) {
 
-  const fetcher = (url: RequestInfo | URL) => fetch(url).then(res => res.json())
+  const data : Product[] = await getProducts()
 
-  const { data, error, isLoading } = useSWR(
-    `/api/searchdata`,
-    fetcher
-  );
+  const searchParams  = props.searchParams;
 
-  if (error) return <div>Failed to fetch users.</div>
-  if (isLoading) return <h2>Loading...</h2>
+  console.log(searchParams)
 
-  // const [products] = useState(productsearch);
-  //const [productInfo, setProductInfo] = useState({ likes: 0 });
+  const genderParam = searchParams.genderVal;
+  const styleParam = searchParams.styleVal;
+  const sizeParam = searchParams.sizeVal;
+  const colorParam = searchParams.colorVal;
 
   //filter product from the products array
   const product = data.filter(
@@ -36,10 +30,6 @@ export default function SearchProduct() {
       product.gender === genderParam ||
       product.style === styleParam ? product: false
   );
-
-  // const product : any= [];
-
-//const product = null; // placeholder
 
   return product ? (
     <>
@@ -62,11 +52,9 @@ export default function SearchProduct() {
                 <p className="product-page-title">{shoes.color}</p>
                 <p>{""}</p>
 
-                {/* <LikesSection
-                  likes={productInfo.likes}
+                <LikesSection
                   productName={shoes.name}
-                  setProductInfo={setProductInfo}
-                /> */}
+                />
               </figcaption>
             </figure>
           ))}

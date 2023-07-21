@@ -1,39 +1,47 @@
 "use client";
-import React from 'react';
-import { useState } from "react";
+// import React from 'react';
+import React, { useState, useEffect }  from 'react';
+
 
 type LikesType ={
-  //likes:number;
-  prodid?:string | undefined;
-  //productName:string | string[] | undefined;
-  //setProductInfo: ( likes: {likes:number}) => void;
+  productName:string | string[] | undefined;
 }
 
 export default function LikesSection(props:LikesType ) {
 
+  const [addLikes, setaddLikes] = useState<{likes:number}>({ likes: 0 });
 
- //const [productInfo, setProductInfo] = useState({ likes: 0 });
-
-  //const { likes, productName, setProductInfo } = { ...props }
-
-  const { prodId }: any = { ...props }
+  const { productName } = { ...props }
 
   const likeProduct = async () => {
     try {
-      const response = await fetch("/api/likeproduct", {
+      const response = await fetch("/api/likeproducts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-       // body: JSON.stringify({ likes: likes, product: productName }),
+       body: JSON.stringify({ addLikes, productName }),
       });
       const result = await response.json();
 
-      //setProductInfo({ likes: result.likes });
+      localStorage.setItem('likes', result.updatedProductInfo.likes);
+
+
     } catch (err) {
-      console.error("not working : " + err);
+      console.error("Likes Not Working!!!!! : " + err);
     }
   };
+
+  useEffect(() => {
+    let updatedLikes
+    // Get the value from local storage if it exists
+    updatedLikes = localStorage.getItem("likes") || ""
+
+    setaddLikes({ likes: +updatedLikes });
+  }, [])
+
+
+
 
   return (
     <div id="upvotes-section">
@@ -46,9 +54,13 @@ export default function LikesSection(props:LikesType ) {
       >
         Add Like
       </button>
-      {/* <p className="upvotes-section-text">
-        This product has {likes} likes so far !
-      </p> */}
+      <p className="upvotes-section-text">
+        This product has {
+
+          addLikes.likes
+
+        } likes so far !
+      </p>
     </div>
   );
 }

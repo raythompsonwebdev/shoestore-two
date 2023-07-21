@@ -1,7 +1,5 @@
 "use client";
-
 import React, { Key } from "react";
-
 interface SearchSelector {
   selectBarData: []
   changesOrders: (orderbyval: string , dir: string) => void;
@@ -9,7 +7,6 @@ interface SearchSelector {
   orderByVal: string
   orderDir: string
 }
-
 
 export default function SearchSelect(props: SearchSelector) {
 
@@ -24,7 +21,6 @@ export default function SearchSelect(props: SearchSelector) {
   return (
     <form className="search-products">
       <label>Search Products </label>
-
       <select
         name="value"
         onChange={onItemChange}
@@ -36,10 +32,10 @@ export default function SearchSelect(props: SearchSelector) {
             id: Key | null | undefined;
             options: Array<any>;
           }) => (
-            // eslint-disable-next-line react/no-array-index-key
+
             <optgroup label={options.value} key={options.id}>
               {options.options.map((option) => (
-                // eslint-disable-next-line react/no-array-index-key
+
                 <option key={option.id} value={option.value}>
                   {option.displayValue}
                 </option>

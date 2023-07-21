@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
+import React from "react";
 import {
   SelectGender,
   SelectColor,
@@ -25,12 +25,12 @@ type SearchDataProps = {
   options: []
 }
 
-type FormDataprops = {
-    gender :string;
-    style:string;
-    colors:string;
-    size:string;
-}
+// type FormDataprops = {
+//     gender :string;
+//     style:string;
+//     colors:string;
+//     size:string;
+// }
 
 export default function SearchBar(props: SearchBarProps) {
 
@@ -75,7 +75,6 @@ export default function SearchBar(props: SearchBarProps) {
   const aria = "search-category-label";
   return (
     <aside id="search-category">
-      {/* <form id="search-category-form" action="/search" onSubmit={submit}> */}
       <form id="search-category-form" onSubmit={submit}>
         <fieldset>
           <legend id="search-category-label">{props.labelname}</legend>
@@ -101,16 +100,6 @@ export default function SearchBar(props: SearchBarProps) {
             colors={color}
             aria={aria}
           />
-          {/* <Link
-            href={{
-              pathname: "/search",
-              query: { resultArray },
-            }}
-            className="search-category-btn"
-            type="submit"
-          >
-            <button name="find">Go</button>
-          </Link> */}
           <input type="submit" className="search-category-btn" value="Send" name="submit" />
         </fieldset>
       </form>

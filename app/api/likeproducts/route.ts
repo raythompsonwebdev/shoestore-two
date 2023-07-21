@@ -3,22 +3,21 @@ import clientPromise from "../../../lib/mongodb";
 import type { NextRequest } from 'next/server'
 import sanitize from "mongo-sanitize";
 
-// type Like = {
-//   likes?: number,
-// }
+type ProductName = {
+  addLikes: {
+    likes:number;
+  };
+  productName: string;
+}
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
 
-  //const data: Like = await request.json()
-  //console.log('data: ', data)
+  const data: ProductName = await request.json()
+  console.log('data: ', data)
 
-  if(request.method !== 'POST'){
-    return NextResponse.json({ message: 'Only POST requests allowed' })
-  }
+  const {addLikes, productName} = data;
 
-  const {product} :any = {...request.body};
-
-  const sanitizedProduct = sanitize(product);
+  const sanitizedProduct = sanitize(productName);
 
   try {
     const client = await clientPromise;

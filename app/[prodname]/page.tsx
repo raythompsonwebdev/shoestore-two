@@ -1,50 +1,12 @@
-'use client';
 import React from 'react';
-import useSWR from "swr";
 import Image from "next/image";
 import LikesSection from "../components/LikesSection";
+import getProducts from '../../lib/getProducts'
+import {Product} from "../../types/index"
 
-export default function SingleProduct({params}:any) {
+export default async function SingleProduct({params}:any) {
 
-  console.log(params.prodname)
-
-  // const [singleProduct] = useState(product);
-
-  const fetcher = (url: RequestInfo | URL) => fetch(url).then(res => res.json())
-
-  const { data, error, isLoading } = useSWR(
-    `/api/singleproduct`,
-    fetcher
-  );
-
-  if (error) return  (
-                      <>
-                        <main id="main-content" className="clearfix">
-                          <h1 id="main-content-title">Product Not Found</h1>
-                          <figure id="product-page-box">
-                            <figcaption id="product-page-caption">
-                              <p className="product-page-title">Product Not Found</p>
-                            </figcaption>
-                          </figure>
-                        </main>
-                      </>
-                    );
-
-  if (isLoading) return <>
-                          <main id="main-content" className="clearfix">
-                            <h1 id="main-content-title">Loading ....</h1>
-                            <figure id="product-page-box">
-                              <figcaption id="product-page-caption">
-                                <p className="product-page-title">Loading ...</p>
-                              </figcaption>
-                            </figure>
-                          </main>
-                        </>
-
-
-  // const { _id, color, imgUrl, name, price, size, style, text }: any = {
-  //   ...singleProduct,
-  // };
+const data : Product[] = await getProducts()
 
  const singleProduct = data.filter((prod:{name:string}) => prod.name === params.prodname ? prod : false)
 
@@ -70,10 +32,7 @@ export default function SingleProduct({params}:any) {
               <p>{result.text}</p>
 
               <LikesSection
-                // likes={productInfo.likes}
-                // productName={prodname}
-                // setProductInfo={setProductInfo}
-                //prodid={_id}
+                productName={result.name}
               />
 
               {/* <button onClick={() => onAdd(product)}>Add To Cart</button> */}
