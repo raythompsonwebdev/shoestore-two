@@ -4,7 +4,13 @@ import LikesSection from "../components/LikesSection";
 import getProducts from '../../lib/getProducts'
 import {Product} from "../../types/index"
 
-export default async function SingleProduct({params}:any) {
+type Params = {
+  params: {
+      prodname : string
+  }
+}
+
+export default async function SingleProduct({params}: Params) {
 
 const data : Product[] = await getProducts()
 
@@ -41,4 +47,13 @@ const data : Product[] = await getProducts()
       </main>
     </>
   );
+}
+
+export async function generateStaticParams() {
+  const productData: Promise<Product[]> = getProducts()
+  const products = await productData
+
+  return products.map(product => ({
+      productId: product.prodId.toString()
+  }))
 }

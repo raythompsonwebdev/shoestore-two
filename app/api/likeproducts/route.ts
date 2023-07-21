@@ -13,7 +13,7 @@ type ProductName = {
 export async function POST(request: Request) {
 
   const data: ProductName = await request.json()
-  console.log('data: ', data)
+  //console.log('data: ', data)
 
   const {addLikes, productName} = data;
 

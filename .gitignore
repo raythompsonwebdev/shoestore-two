@@ -44,7 +44,7 @@ public/js/
 public/font/
 app/components/Basket.tsx
 
-app/api/homepagedata/
-app/api/searchdata/
-app/api/newproductsdata/
-lib/getAccordian.ts
+app/api/searchdata/*.ts
+app/api/singleproduct/*.ts
+lib/getSearchProducts.ts
+lib/getSingleProduct.ts

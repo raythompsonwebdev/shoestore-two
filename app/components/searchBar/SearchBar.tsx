@@ -1,5 +1,4 @@
 'use client'
-
 import React from "react";
 import {
   SelectGender,
@@ -24,13 +23,6 @@ type SearchDataProps = {
   name:string
   options: []
 }
-
-// type FormDataprops = {
-//     gender :string;
-//     style:string;
-//     colors:string;
-//     size:string;
-// }
 
 export default function SearchBar(props: SearchBarProps) {
 

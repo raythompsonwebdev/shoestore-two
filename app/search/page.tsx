@@ -8,14 +8,11 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-
 export default async function SearchProduct(props:Props) {
 
   const data : Product[] = await getProducts()
 
   const searchParams  = props.searchParams;
-
-  console.log(searchParams)
 
   const genderParam = searchParams.genderVal;
   const styleParam = searchParams.styleVal;
