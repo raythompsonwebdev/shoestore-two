@@ -44,7 +44,11 @@ public/js/
 public/font/
 app/components/Basket.tsx
 
-app/api/searchdata/*.ts
-app/api/singleproduct/*.ts
+app/api/searchdata/
+app/api/singleproduct/
 lib/getSearchProducts.ts
-lib/getSingleProduct.ts
+
+
+app/cart/Main.tsx
+app/cart/Product.tsx
+app/cart/page.tsx

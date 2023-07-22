@@ -10,7 +10,6 @@ export const metadata = {
   description: 'All our New Products',
 }
 
-
 export default async function NewProducts() {
 
   const data : [] = await getProducts()

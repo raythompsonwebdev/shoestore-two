@@ -5,7 +5,7 @@ import AllProducts from '../components/allproducts/allProducts'
 
 export const metadata = {
   title: 'All Products',
-  description: 'see all our productss',
+  description: 'See all our Productss',
 }
 
 export default function Allproducts() {

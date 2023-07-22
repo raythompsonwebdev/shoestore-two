@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import AccordianMenu from '../accordianMenu'
+import AccordianMenu from './accordianMenu'
 import FindShoes from '../homepage/FindShoes'
 
 
