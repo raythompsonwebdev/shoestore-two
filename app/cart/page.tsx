@@ -23,8 +23,6 @@ export default function Cart() {
     fetchData();
   }, []);
 
-  console.log(products)
-
   //const  product  = data.product;
   // const products = {}
   //const session = await getServerSession(authOptions);

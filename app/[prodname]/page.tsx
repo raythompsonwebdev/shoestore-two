@@ -16,8 +16,6 @@ export async function generateMetadata({ params: { prodname } }: Params): Promis
   const productData: Promise<Product> = getSingleProduct(prodname)
   const product = await productData
 
-  console.log(product)
-
   if (!product) {
       return {
           title: "User Not Found"
