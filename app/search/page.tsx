@@ -1,72 +1,85 @@
+"use client"
 import React from 'react';
-import LikesSection from "../components/LikesSection";
-import Image from "next/image";
-import getProducts from '../../lib/getProducts'
-import {Product} from "../../types/index"
+// import getProducts from '../../lib/getProducts'
+// import {Product} from "../../types/index"
+import Head from 'next/head'
+import Layout from '../layout'
+import ProductImage from '../../components/Images/ProductImage'
+import Link from 'next/link'
+import { Product } from '../../types/index'
+import { useAppSelector } from '../../app/store'
+import { selectAllProducts } from '../../features/products/productSlice'
+import { formatPrice } from '../../helpers/index'
+import { useRouter } from 'next/router'
+import CartIcon from '../../components/Images/CartIcon'
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+const SearchProduct = () => {
+  const router = useRouter()
+  const { colorVal, sizeVal, genderVal, styleVal } = router.query
 
-export default async function SearchProduct(props:Props) {
-
-  const data : Product[] = await getProducts()
-
-  const searchParams  = props.searchParams;
-
-  const genderParam = searchParams.genderVal;
-  const styleParam = searchParams.styleVal;
-  const sizeParam = searchParams.sizeVal;
-  const colorParam = searchParams.colorVal;
+  const searchProducts = useAppSelector(selectAllProducts)
 
   //filter product from the products array
-  const product = data.filter(
-    (product: any) =>
-      product.size === sizeParam ||
-      product.color === colorParam ||
-      product.gender === genderParam ||
-      product.style === styleParam ? product: false
-  );
+  const products = searchProducts.filter((product: Product) =>
+    product.gender === genderVal ||
+    product.style === styleVal ||
+    product.size === sizeVal ||
+    product.color === colorVal
+      ? product
+      : false
+  )
 
-  return product ? (
-    <>
-      <main id="main-content" className="clearfix">
-        <h1 id="main-content-title">Search Products page</h1>
-        {product.map((shoes: any) => (
+  //const products : ProductType[] = [];
+
+  return products === undefined ? (
+    <Layout>
+      <>
+        <Head>
+          <title>Single Search Product</title>
+          <meta name="description" content="Search Product - All" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main id="main-content" className="clearfix">
+          <h1 id="main-content-title">Search Products page</h1>
+          <figure id="product-page-box">
+            <figcaption id="product-page-caption">
+              <p className="product-page-title">Sorry! No Products Found</p>
+            </figcaption>
+          </figure>
+        </main>
+      </>
+    </Layout>
+  ) : (
+    <Layout>
+      <>
+        <Head>
+          <title>Single Product</title>
+          <meta name="description" content="Search Product - All" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main id="main-content" className="clearfix">
+          <h1 id="main-content-title">Single Product Search</h1>
+          {products.map((shoes: Product) => (
             <figure id="product-page-box" key={shoes.prodId}>
-              <Image
-                id="product-page-img"
-                src={shoes.imgUrl}
-                alt={"test"}
-                width={175}
-                height={150}
-              />
+              <ProductImage src={shoes.imgUrl} name={'test'} cname={'product-page-img'} />
               <figcaption id="product-page-caption">
+
                 <p className="product-page-title"> {shoes.name}</p>
-                <p id="product -page-price">£{shoes.price}</p>
+                <p id="product -page-price">{formatPrice(shoes.price)}</p>
                 <p className="product-page-title">{shoes.gender}</p>
                 <p className="product-page-title">{shoes.size}</p>
                 <p className="product-page-title">{shoes.color}</p>
-                <p>{""}</p>
-
-                <LikesSection
-                  productName={shoes.name}
-                />
+                <p className="product-page-title">
+                  <Link href={`/product/${shoes.name}`} className="product-box-icon-link">
+                  <CartIcon src={shoes.cartImg} alt={"shopping-cart icon"} cname={"product-box-icon-link"}/>
+                      </Link></p>
               </figcaption>
             </figure>
           ))}
-      </main>
-    </>
-  ) : (
-    <>
-      <main id="main-content" className="clearfix">
-        <h1 id="main-content-title">Search Products page</h1>
-        <figure id="product-page-box">
-          <figcaption id="product-page-caption">
-            <p className="product-page-title">No Products Found</p>
-          </figcaption>
-        </figure>
-      </main>
-    </>
-  );
+        </main>
+      </>
+    </Layout>
+  )
 }
+
+export default SearchProduct

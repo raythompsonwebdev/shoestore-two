@@ -44,11 +44,13 @@ public/js/
 public/font/
 app/components/Basket.tsx
 
-app/api/searchdata/
 app/api/singleproduct/
+app/api/searchresultdata/
 lib/getSearchProducts.ts
 
 
-app/cart/Main.tsx
-app/cart/Product.tsx
-app/cart/page.tsx
+
+lib/redux/
+lib/providers.tsx
+lib/jwt.ts
+app/components/Counter

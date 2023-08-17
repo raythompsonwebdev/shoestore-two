@@ -1,7 +1,7 @@
 import React from 'react';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../api/auth/[...nextauth]/options";
-import AccessDenied from "../../components/access-denied";
+import AccessDenied from "../../../components/access-denied";
 import Image from "next/image";
 //import { cookies } from 'next/headers'
 
