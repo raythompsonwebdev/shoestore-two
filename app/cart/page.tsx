@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout from '../layout'
 import { useSession } from 'next-auth/react'
 import { useState, SetStateAction } from 'react'
@@ -72,12 +71,6 @@ const Cart = () => {
   if (status === 'authenticated') {
     return (
       <Layout>
-        <>
-          <Head>
-            <title>Cart</title>
-            <meta name="description" content="Contact us page" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
           <main id="main-content" className="clearfix">
             <h1 id="main-content-title">Cart - Logged In</h1>
             <p>
@@ -95,18 +88,11 @@ const Cart = () => {
               onRemove={onRemove}
             ></Basket>
           </main>
-        </>
       </Layout>
     )
   } else {
     return (
       <Layout>
-        <>
-          <Head>
-            <title>Cart</title>
-            <meta name="description" content="Contact us page" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
           <main id="main-content" className="clearfix">
             <h1 id="main-content-title">Cart - Not Logged In</h1>
             {/* <CartContainer /> */}
@@ -116,7 +102,6 @@ const Cart = () => {
               onRemove={onRemove}
             ></Basket>
           </main>
-        </>
       </Layout>
     )
   }

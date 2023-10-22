@@ -1,6 +1,5 @@
+"use client"
 import { SetStateAction, useState, useEffect } from 'react'
-import Head from 'next/head'
-import Layout from '../layout'
 import AllProductBoxes from '../../components/allproducts/allProductBoxes'
 import AccordianMenu from '../../components/accordianMenu'
 import SearchBar from '../../components/searchBar/SearchBar'
@@ -120,48 +119,41 @@ const Allproducts = () => {
   })
 
   return (
-    <Layout>
-      <>
-        <Head>
-          <title>All Products</title>
-          <meta name="description" content="All Products" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main id="main-content" className="clearfix">
-          {searchbarItems !== undefined ? (
-            <SearchBar labelname="All Products" searchData={searchbarItems} />
-          ) : (
-            <div>No results</div>
-          )}
+    <>
+      <main id="main-content" className="clearfix">
+        {searchbarItems ? (
+          <SearchBar labelname="All Products" searchData={searchbarItems} />
+        ) : (
+          <div>No results</div>
+        )}
 
-          <button
-            id="sidebar-toggle-btn"
-            type="button"
-            onClick={sidebarVisibility}
-            aria-label="secondary menu toggle button"
-          >
-            SIDE
-          </button>
+        <button
+          id="sidebar-toggle-btn"
+          type="button"
+          onClick={sidebarVisibility}
+          aria-label="secondary menu toggle button"
+        >
+          SIDE
+        </button>
 
-          <aside
-            className={`left-side-content ${visibility ? 'is-expanded' : ' '}`}
-          >
-            <AccordianMenu accordianData={accordianItems} />
-          </aside>
+        <aside
+          className={`left-side-content ${visibility ? 'is-expanded' : ' '}`}
+        >
+          <AccordianMenu accordianData={accordianItems} />
+        </aside>
 
-          <main id="right-content-section" className="group">
-            <SearchSelect
-              orderByVal={OrderByVal}
-              orderDir={orderDir}
-              changesOrders={changesOrders}
-              handleChange={handleChange}
-              selectBarData={selectbarItems || ' '}
-            />
-            <AllProductBoxes productData={filteredApts} />
-          </main>
+        <main id="right-content-section" className="group">
+          <SearchSelect
+            orderByVal={OrderByVal}
+            orderDir={orderDir}
+            changesOrders={changesOrders}
+            handleChange={handleChange}
+            selectBarData={selectbarItems || ' '}
+          />
+          <AllProductBoxes productData={filteredApts} />
         </main>
-      </>
-    </Layout>
+      </main>
+    </>
   )
 }
 

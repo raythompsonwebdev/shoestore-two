@@ -1,21 +1,22 @@
 "use client"
 import React from 'react';
-// import getProducts from '../../lib/getProducts'
-// import {Product} from "../../types/index"
-import Head from 'next/head'
-import Layout from '../layout'
 import ProductImage from '../../components/Images/ProductImage'
 import Link from 'next/link'
 import { Product } from '../../types/index'
 import { useAppSelector } from '../../app/store'
 import { selectAllProducts } from '../../features/products/productSlice'
 import { formatPrice } from '../../helpers/index'
-import { useRouter } from 'next/router'
+import { useSearchParams} from 'next/navigation'
 import CartIcon from '../../components/Images/CartIcon'
 
 const SearchProduct = () => {
-  const router = useRouter()
-  const { colorVal, sizeVal, genderVal, styleVal } = router.query
+
+  const searchParams = useSearchParams()
+
+  const colorVal = searchParams.get('colorVal');
+  const sizeVal = searchParams.get('sizeVal');
+  const genderVal = searchParams.get('genderVal');
+  const styleVal = searchParams.get('styleVal');
 
   const searchProducts = useAppSelector(selectAllProducts)
 
@@ -29,16 +30,8 @@ const SearchProduct = () => {
       : false
   )
 
-  //const products : ProductType[] = [];
-
-  return products === undefined ? (
-    <Layout>
-      <>
-        <Head>
-          <title>Single Search Product</title>
-          <meta name="description" content="Search Product - All" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+  return !products ? (
+    <>
         <main id="main-content" className="clearfix">
           <h1 id="main-content-title">Search Products page</h1>
           <figure id="product-page-box">
@@ -47,21 +40,14 @@ const SearchProduct = () => {
             </figcaption>
           </figure>
         </main>
-      </>
-    </Layout>
+    </>
   ) : (
-    <Layout>
-      <>
-        <Head>
-          <title>Single Product</title>
-          <meta name="description" content="Search Product - All" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+    <>
         <main id="main-content" className="clearfix">
           <h1 id="main-content-title">Single Product Search</h1>
           {products.map((shoes: Product) => (
             <figure id="product-page-box" key={shoes.prodId}>
-              <ProductImage src={shoes.imgUrl} name={'test'} cname={'product-page-img'} />
+              <ProductImage src={shoes.imgUrl} alt={'test'} cname={'product-page-img'} />
               <figcaption id="product-page-caption">
 
                 <p className="product-page-title"> {shoes.name}</p>
@@ -77,8 +63,7 @@ const SearchProduct = () => {
             </figure>
           ))}
         </main>
-      </>
-    </Layout>
+    </>
   )
 }
 

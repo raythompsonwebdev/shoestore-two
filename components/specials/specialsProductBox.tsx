@@ -15,13 +15,13 @@ const SpecialsproductBox = (props: {
   return (
     <figure className="product-box">
 
-<ProductImage src={imgUrl} name={name} cname={'product-box-image'} />
+<ProductImage src={imgUrl} alt={name} cname={'product-box-image'} />
 
       <figcaption className="product-box-caption">
         <p className="product-box-title"> {style}</p>
         <p className="product-box-price ">{formatPrice(price)}</p>
 
-        <Link href={`/product/${name}`} className="product-box-icon-link">
+        <Link href={`/${name}`} className="product-box-icon-link">
         <CartIcon src={cartImg} alt={"shopping-cart icon"} cname={"product-box-icon"}/>
         </Link>
 

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Layout from '../layout'
 import { useRouter } from 'next/router'
 
 const Thankyou = () => {
@@ -11,7 +10,6 @@ const Thankyou = () => {
   console.log(username, useremail)
 
   return (
-    <Layout>
       <>
         <Head>
           <title>Thank You</title>
@@ -35,7 +33,6 @@ const Thankyou = () => {
           </section>
         </main>
       </>
-    </Layout>
   )
 }
 

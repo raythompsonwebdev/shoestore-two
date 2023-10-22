@@ -20,7 +20,7 @@ const NewProductBox = (props: {
   }
   return (
     <figure className="larger-product-box">
-       <ProductImage src={imgUrl} name={name} cname={'larger-product-box-image'} />
+       <ProductImage src={imgUrl} alt={name} cname={'larger-product-box-image'} />
       <figcaption className="larger-product-box-caption">
         <h1 style={myComponentStyle} className="larger-product-box-title">
           {name}
@@ -30,7 +30,7 @@ const NewProductBox = (props: {
           Price: {formatPrice(price)}
         </span>
         <span className="larger-product-box-add-to-cart">
-          <Link href={`/product/${name}`} className="larger-product-box-link">
+          <Link href={`/${name}`} className="larger-product-box-link">
           <CartIcon src={cartImg} alt={"shopping-cart icon"} cname={"larger-product-box-icon"}/>
           </Link>{' '}
           Add to Cart

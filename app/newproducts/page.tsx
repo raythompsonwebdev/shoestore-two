@@ -66,9 +66,6 @@ export default function NewProducts() {
     }
   }, [searchbarDataStatus, dispatch])
 
-  console.log(searchbarItems)
-
-
   const [visibility, setVisibility] = useState<boolean>(false)
 
   const sidebarVisibility = (e: { preventDefault: () => void }): void => {
@@ -78,35 +75,35 @@ export default function NewProducts() {
 
   return (
     <>
-     <main id="main-content" className="clearfix">
-          {searchbarDataStatus === "succeeded" ? (
-            <SearchBar labelname="New Products" searchData={searchbarItems} />
-          ) : (
-            <div>No results</div>
-          )}
+      <main id="main-content" className="clearfix">
+        {searchbarDataStatus === "succeeded" ? (
+          <SearchBar labelname="New Products" searchData={searchbarItems} />
+        ) : (
+          <div>No results</div>
+        )}
 
-          <button
-            id="sidebar-toggle-btn"
-            type="button"
-            onClick={sidebarVisibility}
-            aria-label="secondary menu toggle button"
-          >
-            SIDE
-          </button>
+        <button
+          id="sidebar-toggle-btn"
+          type="button"
+          onClick={sidebarVisibility}
+          aria-label="secondary menu toggle button"
+        >
+          SIDE
+        </button>
 
-          <aside
-            className={`left-side-content ${visibility ? 'is-expanded' : ' '}`}
-          >
-            <AccordianMenu accordianData={accordianItems} />
-          </aside>
+        <aside
+          className={`left-side-content ${visibility ? 'is-expanded' : ' '}`}
+        >
+          <AccordianMenu accordianData={accordianItems} />
+        </aside>
 
-          <section id="right-content-section">
-            <NewProductBoxes productData={productData} />
+        <section id="right-content-section">
+          <NewProductBoxes productData={productData} />
 
-            <br />
-            <br />
-          </section>
-        </main>
+          <br />
+          <br />
+        </section>
+      </main>
     </>
   );
 }
