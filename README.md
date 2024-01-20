@@ -17,48 +17,49 @@ Built using JS framework NextJS (app router), NextAuth.js, Typescript, MungoDB d
 
 ## Tools
 
-- [react](https://react.dev/)
-- [sass](https://sass-lang.com/)
-- [node](https://nodejs.org/en)
-- [nextjs](https://nextjs.org/learn/foundations/about-nextjs)
-- [mungodb](https://www.mongodb.com/)
-- [prettier](https://prettier.io/)
-- [eslint](https://eslint.org/)
-- [postcss](https://postcss.org/)
-- [stylelint](https://stylelint.io/)
-- [redux toolkit](https://redux-toolkit.js.org/)
-- [typescript](https://www.typescriptlang.org/)
-- [nextauth](https://next-auth.js.org/)
+- [React](https://react.dev/)
+- [Sass](https://sass-lang.com/)
+- [Node](https://nodejs.org/en)
+- [Nextjs](https://nextjs.org/learn/foundations/about-nextjs)
+- [Mungodb](https://www.mongodb.com/)
+- [Prettier](https://prettier.io/)
+- [Eslint](https://eslint.org/)
+- [Postcss](https://postcss.org/)
+- [Stylelint](https://stylelint.io/)
+- [Redux toolkit](https://redux-toolkit.js.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Nextauth](https://next-auth.js.org/)
 
-## Quick Start
+## Prerequisites
 
-nstall next, react and react-dom :
+This is an example of how to list things you need to use the software and how to install them.
 
-`npm install next react react-dom`
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+## Installation
+
+Clone the repo
+
+```sh
+git clone git@github.com:raythompsonwebdev/shoestore-two.git
+```
+
+`npm install`
 
 ### or
 
-`yarn add next react react-dom`
+`yarn install`
 
 ### or
 
-`pnpm add next react react-dom`
-
-Open package.json and add the following scripts:
-
-```
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint"
-}
-
-```
-
-`npm run dev`
+`pnpm install`
 
 Runs next dev to start Next.js in development mode.
+
+`npm run dev`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
