@@ -41,27 +41,35 @@ This is an example of how to list things you need to use the software and how to
 
 ## Installation
 
-Clone the repo
+Clone the repo :
 
 ```sh
 git clone git@github.com:raythompsonwebdev/shoestore-two.git
 ```
 
-Install NPM packages
+Install NPM packages :
 
-`npm install`
-
-### or
-
-`yarn install`
+```sh
+npm install
+```
 
 ### or
 
-`pnpm install`
+```sh
+yarn install
+```
+
+### or
+
+```sh
+pnpm install
+```
 
 Runs next dev to start Next.js in development mode.
 
-`npm run dev`
+```sh
+npm run dev`
+```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
@@ -69,15 +77,21 @@ The page will reload when you make changes. You may also see any lint errors in 
 
 Runs next build to build the application for production usage
 
-`npm run build`
+```sh
+npm run build
+```
 
 Runs next start to start a Next.js production server
 
-`npm run start`
+```sh
+npm run start
+```
 
 Runs next lint to set up Next.js' built-in ESLint configuration
 
-`npm run lint`
+```sh
+npm run lint
+```
 
 ## Learn More
 
