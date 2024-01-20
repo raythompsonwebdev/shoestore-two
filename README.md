@@ -47,6 +47,8 @@ Clone the repo
 git clone git@github.com:raythompsonwebdev/shoestore-two.git
 ```
 
+Install NPM packages
+
 `npm install`
 
 ### or
