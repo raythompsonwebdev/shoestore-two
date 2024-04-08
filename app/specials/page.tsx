@@ -1,112 +1,102 @@
-"use client"
-import { SetStateAction, useState, useEffect } from 'react'
-import SpecialsProductBoxes from '../../components/specials/specialsProductBoxes'
-import AccordianMenu from '../../components/accordianMenu'
-import SearchBar from '../../components/searchBar/SearchBar'
-import SearchSelect from '../../components/searchSelect/SearchSelect'
-import { Product } from '../../types/index'
+"use client";
+import { SetStateAction, useState, useEffect } from "react";
+import SpecialsProductBoxes from "../../components/specials/specialsProductBoxes";
+import AccordianMenu from "../../components/accordianMenu";
+import SearchBar from "../../components/searchBar/SearchBar";
+import SearchSelect from "../../components/searchSelect/SearchSelect";
 import {
   getSearchData,
   fetchSearchData,
   getSearchBarStatus,
-} from '../../features/searchdata/searchdataSlice'
+} from "../../features/searchdata/searchdataSlice";
 import {
   selectAllAccordian,
   fetchAccordian,
   getAccordianStatus,
-} from '../../features/accordian/accordianSlice'
+} from "../../features/accordian/accordianSlice";
 import {
   selectAllProducts,
   fetchProducts,
   getProductsStatus,
-} from '../../features/products/productSlice'
+} from "../../features/products/productSlice";
 import {
   getSelectData,
   fetchSelectData,
   getSelectDataStatus,
-} from '../../features/selectdata/selectdataSlice'
-import { useAppSelector, useAppDispatch } from '../../app/store'
-import 'bootstrap/dist/css/bootstrap.min.css'
+} from "../../features/selectdata/selectdataSlice";
+import { useSelector, useDispatch } from "../../features/store";
 
 const Specials = () => {
-  const [productData, setProductData] = useState<Product[]>([])
-  const [OrderDir, setOrderByDir] = useState<string>('asc')
-  const [OrderByVal, setOrderByVal] = useState<string>('all')
-  const [visibility, setVisibility] = useState<boolean>(false)
+  const [OrderDir, setOrderByDir] = useState<string>("asc");
+  const [OrderByVal, setOrderByVal] = useState<string>("all");
+  const [visibility, setVisibility] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch();
   // get Products
-  const productItems = useAppSelector(selectAllProducts)
-  const productItemsStatus = useAppSelector(getProductsStatus)
+  const productData = useSelector(selectAllProducts);
+  const productItemsStatus = useSelector(getProductsStatus);
   //const productItemsError = useAppSelector(getProductsError);
 
   // acoordian data
-  const accordianItems = useAppSelector(selectAllAccordian)
-  const accordianDataStatus = useAppSelector(getAccordianStatus)
+  const accordianItems = useSelector(selectAllAccordian);
+  const accordianDataStatus = useSelector(getAccordianStatus);
   //const accordianDataError = useAppSelector(getAccordianError);
 
   // searchbar data
-  const searchbarItems = useAppSelector(getSearchData)
-  const searchbarDataStatus = useAppSelector(getSearchBarStatus)
+  const searchbarItems = useSelector(getSearchData);
+  const searchbarDataStatus = useSelector(getSearchBarStatus);
   //const searchbarDataError = useAppSelector(getSearchBarError);
 
   // selectbar data
-  const selectbarItems = useAppSelector(getSelectData)
-  const selectbarDataStatus = useAppSelector(getSelectDataStatus)
+  const selectbarItems = useSelector(getSelectData);
+  const selectbarDataStatus = useSelector(getSelectDataStatus);
   //const selectbarDataError = useAppSelector(getSelectBarError);
 
   useEffect(() => {
-    if (productItemsStatus === 'idle') {
-      dispatch(fetchProducts())
+    if (productItemsStatus === "idle") {
+      dispatch(fetchProducts());
     }
-  }, [productItemsStatus, dispatch])
+  }, [productItemsStatus, dispatch]);
 
   useEffect(() => {
-    if (accordianDataStatus === 'idle') {
-      dispatch(fetchAccordian())
+    if (accordianDataStatus === "idle") {
+      dispatch(fetchAccordian());
     }
-  }, [accordianDataStatus, dispatch])
+  }, [accordianDataStatus, dispatch]);
 
   useEffect(() => {
-    if (searchbarDataStatus === 'idle') {
-      dispatch(fetchSearchData())
+    if (searchbarDataStatus === "idle") {
+      dispatch(fetchSearchData());
     }
-  }, [searchbarDataStatus, dispatch])
+  }, [searchbarDataStatus, dispatch]);
 
   useEffect(() => {
-    if (selectbarDataStatus === 'idle') {
-      dispatch(fetchSelectData())
+    if (selectbarDataStatus === "idle") {
+      dispatch(fetchSelectData());
     }
-  }, [selectbarDataStatus, dispatch])
-
-  //set products data
-  useEffect(() => {
-    if (productItemsStatus === 'succeeded') {
-      setProductData(productItems)
-    }
-  }, [productItemsStatus, productItems])
+  }, [selectbarDataStatus, dispatch]);
 
   const handleChange = (selected: SetStateAction<string>) => {
-    setOrderByVal(selected)
-    setOrderByDir('asc')
-  }
+    setOrderByVal(selected);
+    setOrderByDir("asc");
+  };
 
   const sidebarVisibility = (e: { preventDefault: () => void }) => {
-    e.preventDefault()
-    setVisibility(!visibility)
-  }
+    e.preventDefault();
+    setVisibility(!visibility);
+  };
 
   const changesOrders = (
     orderbyval: SetStateAction<string>,
     dir: SetStateAction<string>
   ) => {
-    setOrderByVal(orderbyval)
-    setOrderByDir(dir)
-  }
+    setOrderByVal(orderbyval);
+    setOrderByDir(dir);
+  };
 
-  let filteredApts = productData
+  let filteredApts = productData;
 
-  const value = OrderByVal
+  const value = OrderByVal;
 
   filteredApts = filteredApts?.filter((item) => {
     if (
@@ -115,20 +105,16 @@ const Specials = () => {
       item.size === value ||
       item.gender === value
     ) {
-      return item
+      return item;
     }
 
-    return item[value]
-  })
+    return item[value];
+  });
 
   return (
     <>
       <main id="main-content" className="clearfix">
-        {searchbarItems ? (
-          <SearchBar labelname="Specials" searchData={searchbarItems} />
-        ) : (
-          <div>No results</div>
-        )}
+        <SearchBar labelname="Specials" searchData={searchbarItems} />
 
         <button
           id="sidebar-toggle-btn"
@@ -140,7 +126,7 @@ const Specials = () => {
         </button>
 
         <aside
-          className={`left-side-content ${visibility ? 'is-expanded' : ' '}`}
+          className={`left-side-content ${visibility ? "is-expanded" : " "}`}
         >
           <AccordianMenu accordianData={accordianItems} />
         </aside>
@@ -151,7 +137,7 @@ const Specials = () => {
             orderDir={OrderDir}
             changesOrders={changesOrders}
             handleChange={handleChange}
-            selectBarData={selectbarItems || ''}
+            selectBarData={selectbarItems}
           />
           <SpecialsProductBoxes productData={filteredApts} />
 
@@ -159,7 +145,7 @@ const Specials = () => {
         </section>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Specials
+export default Specials;

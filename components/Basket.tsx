@@ -1,122 +1,97 @@
-'use client';
-import React from 'react';
-// import { useState } from 'react';
-// import Image from "next/image";
+"use client";
+import React from "react";
+// import { useEffect, useState } from 'react'
+import ProductImage from "../components/Images/ProductImage";
+import { formatPrice } from "../helpers/index";
+import { useDispatch } from "../features/store";
+import { increase, decrease, clearCart } from "../features/cart/cartSlice";
+import { CartItemType } from "../types/index";
 
-export default function Basket(props: {
-  cartItems: any;
-  onAdd: any;
-  onRemove: any;
-}) {
+const Basket = (props: { cartItems: CartItemType[] }) => {
+  const dispatch = useDispatch();
 
-  const { cartItems, onAdd, onRemove } = props;
-  console.log(cartItems)
-  const itemsPrice = cartItems.reduce(
+  const itemsPrice = props.cartItems.reduce(
     (a: number, c: { qty: number; price: number }) => a + c.qty * c.price,
     0
   );
   const taxPrice = itemsPrice * 0.14;
   const shippingPrice = itemsPrice > 2000 ? 0 : 20;
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
-  console.log(itemsPrice)
 
   return (
-      <>
-        <main id="main-content" className="clearfix">
-          <h1 className="main-content-title">Cart Items</h1>
+    <>
+      <main id="main-content" className="clearfix">
+        {props.cartItems.length === 0 && <div>Cart is empty</div>}
+        {props.cartItems.map((product: CartItemType) => (
+          <figure id="product-page-box" key={product.prodId}>
+            <ProductImage
+              src={product.imgUrl}
+              alt={product.style}
+              cname={"product-page-img"}
+            />
+            <figcaption id="product-page-caption">
+              <p className="product-page-title"> {product.name}</p>
+              <p className="product-page-title">{product.gender}</p>
+              <p className="product-page-title">{product.size}</p>
+              <p className="product-page-title">{product.color}</p>
+              <p className="product-page-title">
+                <button
+                  className="product-page-btn"
+                  onClick={() => dispatch(decrease(product.prodId))}
+                >
+                  REMOVE
+                </button>
+                <button
+                  onClick={() => dispatch(increase(product.prodId))}
+                  className="product-page-btn"
+                >
+                  ADD
+                </button>
+                Qty : {product.qty}
+              </p>
+              <p className="product-page-title">
+                Sub Total : {formatPrice(product.price)}
+              </p>
+            </figcaption>
+          </figure>
+        ))}
+
+        {props.cartItems.length !== 0 && (
           <>
-            {cartItems.length === 0 && <div>Cart is empty</div>}
-            {cartItems.map(
-              (item: {
-                id: React.Key | null | undefined;
-                name:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | React.ReactFragment
-                  | React.ReactPortal
-                  | null
-                  | undefined;
-                qty:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | React.ReactFragment
-                  | React.ReactPortal
-                  | null
-                  | undefined;
-                price: number;
-              }) => (
-                <div key={item.id} className="row">
-                  <div className="col-2">{item.name}</div>
-                  <div className="col-2">
-                    <button onClick={() => onRemove(item)} className="remove">
-                      -
-                    </button>{" "}
-                    <button onClick={() => onAdd(item)} className="add">
-                      +
-                    </button>
-                  </div>
+            <hr></hr>
+            <div className="items-price">
+              <div className="result-title">Items Price</div>
+              <div className="final-result">{formatPrice(itemsPrice)}</div>
+            </div>
+            <div className="tax-price">
+              <div className="result-title">Tax Price</div>
+              <div className="final-result">{formatPrice(taxPrice)}</div>
+            </div>
+            <div className="shipping-price">
+              <div className="result-title">Shipping Price</div>
+              <div className="final-result">{formatPrice(shippingPrice)}</div>
+            </div>
 
-                  <div className="col-2 text-right">
-                    {/* {item.qty} x ${item.price.toFixed(2)} */}
-                    {item.qty} x ${item.price}
-                  </div>
-                </div>
-              )
-            )}
-
-            {cartItems.length !== 0 && (
-              <>
-                <hr></hr>
-                <div className="row">
-                  <div className="col-2">Items Price</div>
-                  <div className="col-1 text-right">
-                    {/* ${itemsPrice.toFixed(2)} */}
-                    ${itemsPrice}
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-2">Tax Price</div>
-                  {/* <div className="col-1 text-right">${taxPrice.toFixed(2)}</div> */}
-                  <div className="col-1 text-right">${taxPrice}</div>
-                </div>
-                <div className="row">
-                  <div className="col-2">Shipping Price</div>
-                  <div className="col-1 text-right">
-                    {/* ${shippingPrice.toFixed(2)} */}
-                    ${shippingPrice}
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-2">
-                    <strong>Total Price</strong>
-                  </div>
-                  <div className="col-1 text-right">
-                    {/* <strong>${totalPrice.toFixed(2)}</strong> */}
-                    <strong>${totalPrice}</strong>
-                  </div>
-                </div>
-                <hr />
-                <div className="row">
-                  <button onClick={() => alert("Implement Checkout!")}>
-                    Checkout
-                  </button>
-                </div>
-              </>
-            )}
+            <div className="total-price">
+              <div className="result-title">
+                <strong>Total Price</strong>
+              </div>
+              <div className="final-result">
+                <strong>{formatPrice(totalPrice)}</strong>
+              </div>
+            </div>
+            <hr />
+            <div className="clear-cart-checkout">
+              <button onClick={() => alert("Implement Checkout!")}>
+                Checkout
+              </button>
+              <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
+            </div>
           </>
-        </main>
-      </>
-
+        )}
+      </main>
+    </>
   );
-}
+};
+
+export default Basket;

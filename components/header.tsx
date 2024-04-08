@@ -1,8 +1,13 @@
-
-import React from 'react';
+"use client";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { CartIcon } from "./Images/Icons";
+import { useSelector } from "../features/store";
+import { selectAllCartItems } from "../features/cart/cartSlice";
 
 export default function Header() {
+  const { cartItems } = useSelector(selectAllCartItems);
   return (
     <header id="site-header">
       <figure id="logo">
@@ -14,21 +19,12 @@ export default function Header() {
         />
       </figure>
 
-      {/* <div>
-        <a href="#/">
-          <h1>Small Shopping Cart</h1>
-        </a>
+      <div id="cart-icon">
+        <CartIcon />
+        <Link href="/cart" id="cart-icon-btn">
+          {cartItems ? cartItems.length : ""}
+        </Link>{" "}
       </div>
-      <div>
-        {/* <a href="#/cart">
-          Cart{" "}
-          {props.countCartItems ? (
-            <button className="badge">{props.countCartItems}</button>
-          ) : (
-            ""
-          )}
-        </a>{" "}
-      </div>*/}
     </header>
   );
 }

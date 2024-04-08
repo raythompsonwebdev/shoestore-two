@@ -1,25 +1,16 @@
 export interface IUser {
-  id: string | null | undefined;
-  name: string | null | undefined;
-  email: string | null | undefined;
-  accessToken?: string;
-  role?: string;
-
+  id: string | number;
+  name: string;
+  email: string;
+  password: string;
+  date: string;
+  image: string;
+  cartitems: [];
 }
-
 export interface LoginUserParams {
   email: string;
   password: string;
 }
-
-
-export interface AllData {
-  product: [];
-  accordian: [];
-  searchresults :[];
-  selectresults: [];
-}
-
 export interface FilteredData {
   [x: string]: string | number;
   _id: string;
@@ -37,75 +28,64 @@ export interface FilteredData {
   likes: number;
   qty: number;
 }
-
-export interface NewProductsData {
-  product: [];
-  accordian: [];
-  searchresults :[];
+export interface ProductType {
+  [x: string]: string | number | string[] | undefined;
+  _id: string;
+  prodId: number;
+  name: string;
+  style: string;
+  color: string;
+  size: string;
+  gender: string;
+  imgUrl: string;
+  price: number;
+  cartImg: string;
+  text: string;
+  all: string;
+  likes: number;
+  qty: number;
 }
-
-export interface Product{
-  [x: string]: string | number
-  _id: string
-  prodId: number
-  name: string
-  style: string
-  color: string
-  size: string
-  gender: string
-  imgUrl: string
-  price: number
-  cartImg: string
-  text: string
-  all: string
-  likes: number
-  qty: number
-}
-
 export interface AccordianType {
-  _id: string
-  id: number
-  title: string | null
-  items: Array<string>
+  _id: string;
+  id: number;
+  title: string | null;
+  items: Array<string>;
 }
-
 export interface SearchBarType {
-  _id: string
-  id: number
-  name: string
+  _id: string;
+  id: number;
+  name: string;
   options: Array<{
-    id: number
-    value: string
-    displayValue: string
-  }>
+    id: number;
+    value: string;
+    displayValue: string;
+  }>;
 }
-
 export interface SelectBarType {
-  _id: string
-  id: number
-  name: string
-  value: string
+  _id: string;
+  id: number;
+  name: string;
+  value: string;
   options: Array<{
-    id: number
-    value: string
-    displayValue: string
-  }>
+    id: number;
+    value: string;
+    displayValue: string;
+  }>;
 }
-
 export interface CartItemType {
-  all: string
-  cartImg: string
-  color: string
-  gender: string
-  imgUrl: string
-  likes: number
-  name: string
-  price: number
-  prodId: number
-  qty: number
-  size: string
-  style: string
-  text: string
-  _id: string
+  [x: string]: string | number | string[] | undefined;
+  all: string;
+  cartImg: string;
+  color: string;
+  gender: string;
+  imgUrl: string;
+  likes: number;
+  name: string;
+  price: number;
+  prodId: number;
+  qty: number;
+  size: string;
+  style: string;
+  text: string;
+  _id: string;
 }
-

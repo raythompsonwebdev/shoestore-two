@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import clientPromise from "../../../lib/mongodb";
 
-
-
 export async function GET(request: Request) {
-
-  if(request.method !== 'GET'){
-    return NextResponse.json({ message: 'Only GET requests allowed' })
+  if (request.method !== "GET") {
+    return NextResponse.json({ message: "Only GET requests allowed" });
   }
 
   try {
@@ -22,8 +19,6 @@ export async function GET(request: Request) {
     const selectresults = JSON.parse(JSON.stringify(resultsthree));
 
     return NextResponse.json({ selectresults });
-
-    // return new Response(JSON.stringyy({product,accordian,searchresults,selectresults}))
   } catch (err) {
     return NextResponse.json({ message: `${err}` });
   }

@@ -1,25 +1,18 @@
 import React, { ReactNode } from "react";
-// import { Providers } from '@/lib/providers'
-import {NextAuthSessionProvider} from "./sessionProvider";
+import { NextAuthSessionProvider } from "./sessionProvider";
 import Header from "../components/header";
 import MainNav from "../components/(MainNav)/mainNav";
 import Footer from "../components/footer";
 import "../styles/sass/style.scss";
-import { Old_Standard_TT } from 'next/font/google'
-// import { store } from './store'
-import { Providers } from '../lib/providers'
+import { Old_Standard_TT } from "next/font/google";
+import { Providers } from "../lib/providers";
 
 const OldStandard = Old_Standard_TT({
-  weight: '400',
-  subsets: ['latin'],
-})
+  weight: "400",
+  subsets: ["latin"],
+});
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <Providers>
       <html lang="en">
@@ -35,6 +28,5 @@ export default function RootLayout({
         </body>
       </html>
     </Providers>
-
   );
 }

@@ -1,110 +1,79 @@
-import Layout from '../layout'
-import { useSession } from 'next-auth/react'
-import { useState, SetStateAction } from 'react'
-import Basket from '../../components/Basket'
-// import {ProductType } from '../types/index'
-// import CartContainer from '../features/cart/CartContainer'
-// import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-// import { calculateTotals, getCartItems} from '../features/cart/cartSlice';
-
-// type tester = {
-//   qty:number;
-//   product:CartItemType[];
-//   cartItems:CartItemType[];
-//   prodId:number;
-// }
+"use client";
+import Layout from "../../app/layout";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useSelector } from "../../features/store";
+import Basket from "../../components/Basket";
+import { selectAllCartItems } from "../../features/cart/cartSlice";
 
 const Cart = () => {
-  // const { cartItems, isLoading } = useAppSelector((store) => store.cart);
-  // const dispatch = useAppDispatch();
+  const { cartItems } = useSelector(selectAllCartItems);
 
-  // useEffect(() => {
-  //   dispatch(calculateTotals());
-  // }, [cartItems,dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getCartItems());
-  // },[dispatch]);
-
-  // eslint-disable-line @typescript-eslint/no-explicit-any
-  //const [cartItems, setCartItems] = useState<Array<any>>([])
-
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [cartItems, setCartItems] = useState<any>([])
+  const [cookies, setCookies] = useState<any>(null);
 
-  const onAdd = (product: { prodId: SetStateAction<number> }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { user }: any = { ...session };
 
-    const exist = cartItems.find(
-      (x:{prodId:number}) => x.prodId === product.prodId
-    )
+  console.log(cookies);
 
-    if (exist) {
-      setCartItems(
-        cartItems.map((x:{prodId:number}) =>
-          x.prodId === product.prodId ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      )
-    } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }])
+  useEffect(() => {
+    if (status === "authenticated") {
+      try {
+        const fetchCookie = async () => {
+          const res = await fetch("/api/helpers/cookiegetter");
+          const result = await res.json();
+          setCookies(result);
+          return result;
+        };
+
+        const addData = async () => {
+          const res = await fetch("/api/addcartitems", {
+            method: "POST",
+            body: JSON.stringify({ cartItems, user }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const result = await res.json();
+          return result;
+        };
+
+        fetchCookie();
+        addData();
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }
+  }, [status, cartItems, user]);
 
-  const onRemove = (product: { prodId: SetStateAction<number> }) => {
-    const exist = cartItems.find(
-      (x: { prodId: number }) => x.prodId === product.prodId
-    )
-    if (exist?.qty === 1) {
-      setCartItems(
-        cartItems.filter((x: { prodId: number }) => x.prodId !== product.prodId)
-      )
-    } else {
-      setCartItems(
-        cartItems.map((x:{prodId:number}) =>
-          x.prodId === product.prodId ? { ...exist, qty: exist.qty - 1 } : x
-        )
-      )
-    }
-  }
-
-  if (status === 'authenticated') {
+  if (status === "authenticated" && session !== null) {
     return (
       <Layout>
+        <>
           <main id="main-content" className="clearfix">
             <h1 id="main-content-title">Cart - Logged In</h1>
-            <p>
-              {session.user?.name ? session.user?.name : 'name not available'}
-            </p>
-            <p>
-              {session.user?.email
-                ? session.user?.email
-                : 'email not available'}
-            </p>
-            {/* <CartContainer /> */}
-            <Basket
-              cartItems={cartItems}
-              onAdd={onAdd}
-              onRemove={onRemove}
-            ></Basket>
+            <p>{user ? user?.name : "name not available"}</p>
+            <p>{user ? user?.email : "email not available"}</p>
+            <Basket cartItems={cartItems}></Basket>
           </main>
+        </>
       </Layout>
-    )
+    );
   } else {
     return (
       <Layout>
+        <>
           <main id="main-content" className="clearfix">
             <h1 id="main-content-title">Cart - Not Logged In</h1>
-            {/* <CartContainer /> */}
-            <Basket
-              cartItems={cartItems}
-              onAdd={onAdd}
-              onRemove={onRemove}
-            ></Basket>
+            <Basket cartItems={cartItems}></Basket>
           </main>
+        </>
       </Layout>
-    )
+    );
   }
-}
+};
 
-export default Cart
+export default Cart;
