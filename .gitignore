@@ -32,7 +32,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
 src/app/api/authOptions/
 
 spare/
@@ -43,14 +43,18 @@ app/actions.ts
 public/js/
 public/font/
 app/components/Basket.tsx
-
-app/api/singleproduct/
 app/api/searchresultdata/
-lib/getSearchProducts.ts
 
 
-
-lib/redux/
-lib/providers.tsx
 lib/jwt.ts
 app/components/Counter
+
+files/
+
+models/accordianData.ts
+models/cartItems.ts
+models/products.ts
+models/searchBarData.ts
+models/selectBarData.ts
+app/api/singleproduct/
+LADIES-SKATE-SHOES

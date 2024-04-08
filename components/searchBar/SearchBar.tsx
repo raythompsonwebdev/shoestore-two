@@ -1,81 +1,69 @@
-'use client'
-import React, { useState } from 'react'
-// import React from 'react'
-//import Link from 'next/link'
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 import {
   SelectGender,
   SelectColor,
   SelectStyle,
   SelectSize,
-} from './SearchBarData'
-import { SearchBarType } from '../../types/index'
-import { useRouter } from 'next/navigation'
+} from "./SearchBarData";
+import { SearchBarType } from "../../types/index";
+import { useRouter } from "next/navigation";
 
 type SearchBarProps = {
-  labelname: string
-  searchData: SearchBarType[]
-}
+  labelname: string;
+  searchData: SearchBarType[];
+};
 
 const SearchBar = (props: SearchBarProps) => {
-  const [genderVal, setGenderVal] = useState<string>('')
-  const [sizeVal, setSizeVal] = useState<string>('')
-  const [styleVal, setStyleVal] = useState<string>('')
-  const [colorVal, setColorVal] = useState<string>('')
+  const [genderVal, setGenderVal] = useState<string>("");
+  const [sizeVal, setSizeVal] = useState<string>("");
+  const [styleVal, setStyleVal] = useState<string>("");
+  const [colorVal, setColorVal] = useState<string>("");
 
-  const { labelname, searchData } = props
+  const router = useRouter();
 
-  const [gender, style, size, color] = searchData
+  const { labelname, searchData } = props;
+
+  const [gender, style, size, color] = searchData;
 
   const genderHandler = (event: { target: { value: string } }): void => {
-    const { target } = event
-    const { value } = target
-    setGenderVal(value)
-  }
+    const { target } = event;
+    const { value } = target;
+    setGenderVal(value);
+  };
 
   const styleHandler = (event: { target: { value: string } }): void => {
-    const { target } = event
-    const { value } = target
-    setStyleVal(value)
-  }
+    const { target } = event;
+    const { value } = target;
+    setStyleVal(value);
+  };
 
   const sizeHandler = (event: { target: { value: string } }): void => {
-    const { target } = event
-    const { value } = target
-    setSizeVal(value)
-  }
+    const { target } = event;
+    const { value } = target;
+    setSizeVal(value);
+  };
 
   const colorHandler = (event: { target: { value: string } }) => {
-    const { target } = event
-    const { value } = target
-    setColorVal(value)
-  }
+    const { target } = event;
+    const { value } = target;
+    setColorVal(value);
+  };
 
-  const router = useRouter()
-
-  const submit = (event: { preventDefault: () => void }) => {
-    event.preventDefault()
-    //get form
-    const SearchFormData = document.querySelector(
-      '#search-category-form'
-    ) as HTMLFormElement
-    //get form data
-    const formData: FormData = new FormData(SearchFormData)
-    //get url query params
-    const style: FormDataEntryValue | null = formData.get('styleVal')
-    const gender: FormDataEntryValue | null = formData.get('genderVal')
-    const color: FormDataEntryValue | null = formData.get('colorVal')
-    const size: FormDataEntryValue | null = formData.get('sizeVal')
+  const submit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
 
     // send data to search results page as url query params -query string
     router.push(
-      `/search?genderVal=${gender ?? ''}&styleVal=${style ?? ''}&sizeVal=${
-        size ?? ''
-      }&colorVal=${color ?? ''}`
-    )
-    return false
-  }
+      `/search?genderVal=${genderVal ?? ""}&styleVal=${styleVal ?? ""}&sizeVal=${
+        sizeVal ?? ""
+      }&colorVal=${colorVal ?? ""}`
+    );
+    // return false;
+  };
 
-  const aria = 'search-category-label'
+  const aria = "search-category-label";
 
   return (
     <aside id="search-category">
@@ -83,16 +71,16 @@ const SearchBar = (props: SearchBarProps) => {
         <fieldset>
           <legend
             className={`search-category-label ${
-              labelname === 'New Products' || labelname === 'All Products'
-                ? 'search-category-label-new '
-                : ''
+              labelname === "New Products" || labelname === "All Products"
+                ? "search-category-label-new "
+                : ""
             }`}
           >
             {labelname}
           </legend>
           <SelectGender
             name="genderVal"
-            genders={gender || ''}
+            genders={gender || ""}
             value={genderVal}
             genderHandler={genderHandler}
             aria={aria}
@@ -100,7 +88,7 @@ const SearchBar = (props: SearchBarProps) => {
 
           <SelectStyle
             name="styleVal"
-            styles={style || ''}
+            styles={style || ""}
             value={styleVal}
             styleHandler={styleHandler}
             aria={aria}
@@ -108,14 +96,14 @@ const SearchBar = (props: SearchBarProps) => {
 
           <SelectSize
             name="sizeVal"
-            sizes={size || ''}
+            sizes={size || ""}
             value={sizeVal}
             sizeHandler={sizeHandler}
             aria={aria}
           />
           <SelectColor
             name="colorVal"
-            colors={color || ''}
+            colors={color || ""}
             value={colorVal}
             colorHandler={colorHandler}
             aria={aria}
@@ -134,7 +122,7 @@ const SearchBar = (props: SearchBarProps) => {
         </fieldset>
       </form>
     </aside>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

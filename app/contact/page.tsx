@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import ContactForm from "../../components/contactForm";
 
 export const metadata = {
-  title: 'Contact page',
-  description: 'Faqs page',
-}
+  title: "Contact page",
+  description: "Contact Page",
+};
 
 export default function Contact() {
   return (

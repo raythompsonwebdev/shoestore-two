@@ -1,68 +1,72 @@
-import type { RootState } from '../../app/store'
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { Product } from '../../types/index'
+import type { ReduxState } from "../store";
+// import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAppAsyncThunk } from "../createAppAsyncThunk";
+import axios from "axios";
+import { ProductType } from "../../types/index";
 export interface ProductsState {
-  productItems: Array<Product>
-  status: string
-  error: string | undefined | null
+  productItems: Array<ProductType>;
+  status: string;
+  error: string | undefined | null;
 }
 
 const initialState: ProductsState = {
   productItems: [],
-  status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
+  status: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
-}
+};
 
-const url = '/api/productsdata'
+const url = "/api/productsdata";
 
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
+export const fetchProducts = createAppAsyncThunk(
+  "products/fetchProducts",
   async (name, thunkAPI) => {
     try {
-      const resp = await axios.get(url)
-      return resp.data.product
+      const resp = await axios.get(url);
+      return resp.data.product;
     } catch (error) {
-      return thunkAPI.rejectWithValue('something went wrong')
+      return thunkAPI.rejectWithValue("something went wrong");
     }
   }
-)
+);
 
 export const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
-    productAdded: (state, action: PayloadAction<Product>) => {
-      state.productItems.push(action.payload)
+    productAdded: (state, action: PayloadAction<ProductType>) => {
+      state.productItems.push(action.payload);
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
-        state.status = 'loading'
+        state.status = "loading";
       })
       .addCase(
         fetchProducts.fulfilled,
-        (state, action: PayloadAction<Array<Product>>) => {
-          state.status = 'succeeded'
-          state.productItems = action.payload
+        (state, action: PayloadAction<Array<ProductType>>) => {
+          state.status = "succeeded";
+          state.productItems = action.payload;
         }
       )
       .addCase(fetchProducts.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
+        state.status = "failed";
+        state.error = action.error.message;
+      });
   },
-})
+});
 
-export const selectAllProducts = (state: RootState) =>
-  state.products.productItems
-export const getProductsStatus = (state: RootState) => state.products.status
-export const getProductsError = (state: RootState) => state.products.error
+export const selectAllProducts = (state: ReduxState) =>
+  state.products.productItems;
+export const getProductsStatus = (state: ReduxState) => state.products.status;
+export const getProductsError = (state: ReduxState) => state.products.error;
 
-export const selectProductByName = (state: RootState, name: string | string[] | undefined) =>
-  state.products.productItems.find((product) => product.name === name)
+export const selectProductByName = (
+  state: ReduxState,
+  name: string | string[] | undefined
+) => state.products.productItems.find((product) => product.name === name);
 
-export const { productAdded } = productSlice.actions
+export const { productAdded } = productSlice.actions;
 
-export default productSlice.reducer
+export default productSlice.reducer;

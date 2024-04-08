@@ -1,11 +1,11 @@
 "use client";
-import React from 'react';
+import React from "react";
 import { SetStateAction, useState } from "react";
 
 export default function ContactForm() {
-  const [username, setUserName] = useState<string>(" ");
-  const [email, setEmail] = useState<string>(" ");
-  const [comments, setComments] = useState<string>(" ");
+  const [username, setUserName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [comments, setComments] = useState<string>("");
 
   const handleUserName = (e: { target: { value: SetStateAction<string> } }) => {
     setUserName(e.target.value);

@@ -1,57 +1,23 @@
 "use client";
 
-import React,{ SetStateAction, useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
-  const [username, setUserName] = useState<string>(" ");
-  const [useremail, setEmail] = useState<string>(" ");
-  const [password, setPassword] = useState<string>(" ");
-  const [error, setError] = useState<string>(" ");
+  const [username, setUserName] = useState<string>("");
+  const [useremail, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const router = useRouter();
 
   const handleUserName = (e: { target: { value: SetStateAction<string> } }) => {
     const { value } = e.target;
-    // // check if input matches pattern
-    // if (
-    //   srcElement.validity.patternMismatch ||
-    //   srcElement.validity.tooShort ||
-    //   srcElement.validity.tooLong
-    // ) {
-    //   //error.classList.remove("hide-error");
-    //   //error.classList.add("show-error");
-    //   setError("Name must not contain numbers or be less than 3 characters.");
-    //   //srcElement.classList.add("dirty");
-    // } else {
-    //   //error.classList.add("hide-error");
-    //   //error.classList.remove("show-error");
-    //   setError(" ");
-    //   // srcElement.classList.add("dirty");
-    // }
     setUserName(value);
   };
 
   const handleEmails = (e: { target: { value: SetStateAction<string> } }) => {
     const { value } = e.target;
-    // const { srcElement }: any = e;
-
-    // // regex to detect valid email
-    // const emailRegExp =
-    //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    // // check if input matches pattern
-    // if (!emailRegExp.test(srcElement.value)) {
-    //   //error.classList.add("show-error");
-    //   //error.classList.remove("hide-error");
-    //   setError("Please provide a valid e-mail address!");
-    //   //srcElement.classList.add("dirty");
-    // } else {
-    //   // error.classList.add("hide-error");
-    //   // error.classList.remove("show-error");
-    //   setError(" ");
-    //   // srcElement.classList.add("dirty");
-    // }
     setEmail(value);
   };
 
@@ -61,6 +27,7 @@ export default function RegisterForm() {
   };
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
       const response = await fetch("/api/registerUser", {
         method: "POST",

@@ -1,5 +1,5 @@
-'use client';
-import  React,{ SetStateAction, useState } from "react";
+"use client";
+import React, { SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginUser } from "../helpers";
 import Link from "next/link";
@@ -75,7 +75,11 @@ export default function LoginForm() {
       </ul>
       <p style={{ display: "block", lineHeight: "50px" }}>
         Not Registered?.
-        <Link href={`/register`} title="" style={{ display: "inline", marginLeft:"0.5em"}}>
+        <Link
+          href={`/register`}
+          title=""
+          style={{ display: "inline", marginLeft: "0.5em" }}
+        >
           Click here to register
         </Link>
       </p>

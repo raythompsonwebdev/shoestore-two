@@ -1,40 +1,40 @@
 "use client";
 //import { SetStateAction } from 'react'
 type LikesType = {
-  likes: number
-  prodid?: string
-  productName: string | string[] | undefined
-  setProductInfo: (likes: { likes: number }) => void
-}
+  likes: number;
+  prodid?: string;
+  productName: string | string[] | undefined;
+  setProductInfo: (likes: { likes: number }) => void;
+};
 
 const LikesSection = (props: LikesType) => {
-  const { likes, productName, setProductInfo } = { ...props }
+  const { likes, productName, setProductInfo } = { ...props };
 
   const likeProduct = async () => {
     try {
-      const response = await fetch('/api/likeproduct', {
-        method: 'POST',
+      const response = await fetch("/api/likeproducts", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ likes: likes, product: productName }),
-      })
-      const result = await response.json()
+        body: JSON.stringify({ likes, product: productName }),
+      });
+      const result = await response.json();
 
-      setProductInfo({ likes: result.likes })
+      setProductInfo({ likes: result.likes });
 
-      return result
+      // return result
     } catch (err) {
-      console.error('not working : ' + err)
+      console.error("not working : " + err);
     }
-  }
+  };
 
   return (
     <div id="upvotes-section">
       <button
         type="submit"
         onClick={() => {
-          likeProduct()
+          likeProduct();
         }}
         className="upvotes-section-btn"
       >
@@ -45,7 +45,7 @@ const LikesSection = (props: LikesType) => {
         This product has {likes} likes so far !
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default LikesSection
+export default LikesSection;

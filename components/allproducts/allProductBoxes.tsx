@@ -1,13 +1,13 @@
-import React from 'react'
-import ProductBox from './allProductBox'
-import { FilteredData } from '../../types/index'
+import React from "react";
+import ProductBox from "./allProductBox";
+import { ProductType } from "../../types/index";
 
-const ProductBoxes = (props: { productData: FilteredData[] }) => {
-  const { productData } = props
+const ProductBoxes = (props: { productData: ProductType[] }) => {
+  const { productData } = props;
 
   const Product = productData
     .slice(0, 16)
-    .map((item: FilteredData) => (
+    .map((item) => (
       <ProductBox
         key={item._id}
         name={item.name}
@@ -16,9 +16,9 @@ const ProductBoxes = (props: { productData: FilteredData[] }) => {
         cartImg={item.cartImg}
         style={item.style}
       />
-    ))
+    ));
 
-  return <div className="product-boxes">{Product}</div>
-}
+  return <div className="product-boxes">{Product}</div>;
+};
 
-export default ProductBoxes
+export default ProductBoxes;
