@@ -42,35 +42,30 @@ export default function LoginForm() {
     <form id="contact-form" onSubmit={submit}>
       <ul id="contact-form-fields">
         <li className="contact-form-item">
-          <label htmlFor="email">
-            E-mail:&#32;
-            <input
-              type="email"
-              name="useremail"
-              id="useremail"
-              value={email}
-              onChange={handleEmails}
-              required
-            />
-          </label>
+          <label htmlFor="email">E-mail:&#32; </label>
+          <input
+            type="email"
+            name="useremail"
+            id="useremail"
+            value={email}
+            onChange={handleEmails}
+            required
+          />
         </li>
         <li className="contact-form-item">
-          <label htmlFor="message">
-            Password:&#32;
-            <input
-              type="password"
-              value={password}
-              onChange={handlePassword}
-              name="password"
-              id="password"
-              required
-            />
-          </label>
+          <label htmlFor="message">Password:&#32;</label>
+          <input
+            type="password"
+            value={password}
+            onChange={handlePassword}
+            name="password"
+            id="password"
+            required
+          />
         </li>
         <li className="contact-form-item">
-          <label htmlFor="submit">
-            <input type="submit" value="Send" id="submit" name="submit" />
-          </label>
+          <label htmlFor="submit"></label>
+          <input type="submit" value="Send" id="submit" name="submit" />
         </li>
       </ul>
       <p style={{ display: "block", lineHeight: "50px" }}>

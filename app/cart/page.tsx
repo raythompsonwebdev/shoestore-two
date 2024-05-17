@@ -1,10 +1,10 @@
 "use client";
-import Layout from "../../app/layout";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useSelector } from "../../features/store";
 import Basket from "../../components/Basket";
-import { selectAllCartItems } from "../../features/cart/cartSlice";
+import { selectAllCartItems, addToCart } from "../../features/cart/cartSlice";
+import { getServerSession } from "next-auth/next";
 
 const Cart = () => {
   const { cartItems } = useSelector(selectAllCartItems);
@@ -12,23 +12,11 @@ const Cart = () => {
   const { data: session, status } = useSession();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [cookies, setCookies] = useState<any>(null);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { user }: any = { ...session };
-
-  console.log(cookies);
 
   useEffect(() => {
     if (status === "authenticated") {
       try {
-        const fetchCookie = async () => {
-          const res = await fetch("/api/helpers/cookiegetter");
-          const result = await res.json();
-          setCookies(result);
-          return result;
-        };
-
         const addData = async () => {
           const res = await fetch("/api/addcartitems", {
             method: "POST",
@@ -38,10 +26,11 @@ const Cart = () => {
             },
           });
           const result = await res.json();
-          return result;
+          console.log(result);
+
+          //return result;
         };
 
-        fetchCookie();
         addData();
       } catch (err) {
         console.log(err);
@@ -49,29 +38,23 @@ const Cart = () => {
     }
   }, [status, cartItems, user]);
 
-  if (status === "authenticated" && session !== null) {
+  if (status === "authenticated" && user !== null) {
     return (
-      <Layout>
-        <>
-          <main id="main-content" className="clearfix">
-            <h1 id="main-content-title">Cart - Logged In</h1>
-            <p>{user ? user?.name : "name not available"}</p>
-            <p>{user ? user?.email : "email not available"}</p>
-            <Basket cartItems={cartItems}></Basket>
-          </main>
-        </>
-      </Layout>
+      <>
+        <main id="main-content" className="clearfix">
+          <h1 id="main-content-title">Cart - Logged In</h1>
+          <p>{user ? user.name : "name not available"}</p>
+          <p>{user ? user.email : "email not available"}</p>
+          <Basket cartItems={cartItems}></Basket>
+        </main>
+      </>
     );
   } else {
     return (
-      <Layout>
-        <>
-          <main id="main-content" className="clearfix">
-            <h1 id="main-content-title">Cart - Not Logged In</h1>
-            <Basket cartItems={cartItems}></Basket>
-          </main>
-        </>
-      </Layout>
+      <main id="main-content" className="clearfix">
+        <h1 id="main-content-title">Cart - Not Logged In</h1>
+        <Basket cartItems={cartItems}></Basket>
+      </main>
     );
   }
 };

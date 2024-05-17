@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../../lib/mongodb";
-import { connectToMongoDB } from "../../../../lib/dbConnect";
+import connectToMongoose from "../../../../lib/dbConnect";
 import User from "../../../../models/users";
 // import { IUser } from "../../../../types";
 import { comparePassword } from "../../../../lib/hashPassword";
@@ -10,20 +10,18 @@ import { comparePassword } from "../../../../lib/hashPassword";
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: "credentials",
       name: "credentials",
       credentials: {
         name: { label: "Username", type: "text" },
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        await connectToMongoDB().catch((err) => {
-          throw new Error(err);
-        });
+      async authorize(credentials) {
+        await connectToMongoose();
+        // const client = await clientPromise;
+        // const db = client.db("shoestore");
 
-        console.log(req);
-        // confirm if user email already exists.
+        // // confirm if user email already exists.
         const user = await User.findOne({
           email: credentials?.email,
         }).select("+password");

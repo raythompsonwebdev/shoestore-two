@@ -26,8 +26,6 @@ const SearchProduct = () => {
     .filter((prodsize) => prodsize.size === sizeVal)
     .filter((prodcol) => prodcol.color === colorVal);
 
-  console.log(products);
-
   return products.length === 0 ? (
     <>
       <main id="main-content" className="clearfix">

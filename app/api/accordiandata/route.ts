@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import clientPromise from "../../../lib/mongodb";
 
 export async function GET() {
-
   try {
     //await clientPromise
     const client = await clientPromise;
@@ -13,7 +12,6 @@ export async function GET() {
     const accordian = JSON.parse(JSON.stringify(resultstwo));
 
     return NextResponse.json({ accordian });
-
   } catch (err) {
     return NextResponse.json({ message: `${err}` });
   }

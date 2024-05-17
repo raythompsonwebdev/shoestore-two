@@ -40,7 +40,7 @@ export default function RegisterForm() {
       const result = await response.json();
 
       if (result) {
-        router.push("/");
+        router.push("/thankyou");
       }
     } catch (err) {
       console.error("not working : " + err);

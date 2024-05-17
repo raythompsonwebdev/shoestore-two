@@ -14,20 +14,12 @@ export interface CartItemState {
   isLoading: boolean;
 }
 
-const url = "/api/cartitems";
-
-const initialState: CartItemState = {
-  cartItems: [],
-  qty: 0,
-  total: 0,
-  isLoading: true,
-};
+const url = "/api/addcartitems";
 
 export const getCartItems = createAsyncThunk(
   "cart/getCartItems",
   async (name, thunkAPI) => {
     try {
-      console.log(name);
       const resp = await axios.get(url);
       return resp.data;
     } catch (error) {
@@ -36,8 +28,15 @@ export const getCartItems = createAsyncThunk(
   }
 );
 
+const initialState: CartItemState = {
+  cartItems: [],
+  qty: 0,
+  total: 0,
+  isLoading: true,
+};
+
 const cartSlice = createSlice({
-  name: "cart",
+  name: "cartItems",
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItemType>) => {
@@ -90,13 +89,12 @@ const cartSlice = createSlice({
         }
       )
       .addCase(getCartItems.rejected, (state, action) => {
-        console.log(action);
         state.isLoading = false;
       });
   },
 });
 
-export const selectAllCartItems = (state: ReduxState) => state.cart;
+export const selectAllCartItems = (state: ReduxState) => state.cartItems;
 
 export const {
   addToCart,

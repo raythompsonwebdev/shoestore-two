@@ -1,11 +1,13 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 import { Accordion } from "react-bootstrap";
-import { AccordianType } from '../types'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { AccordianType } from "../types";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function AccordianMenu(props: { accordianData: AccordianType[] }) {
-  const { accordianData } = { ...props }
+export default function AccordianMenu(props: {
+  accordianData: AccordianType[];
+}) {
+  const { accordianData } = { ...props };
 
   return (
     <Accordion defaultActiveKey={["0"]} alwaysOpen>

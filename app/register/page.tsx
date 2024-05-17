@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import RegisterForm from "../../components/registerForm";
 import { Metadata } from "next";
 

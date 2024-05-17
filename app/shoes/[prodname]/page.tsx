@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import LikesSection from "../../../components/LikesSection";
-import { useParams } from "next/navigation";
 import { useSelector, useDispatch } from "../../../features/store";
 import { selectProductByName } from "../../../features/products/productSlice";
 import { addToCart } from "../../../features/cart/cartSlice";
@@ -10,10 +9,9 @@ import { CartIcon } from "../../../components/Images/Icons";
 import { formatPrice } from "../../../helpers/index";
 import { ProductType } from "../../../types";
 
-const SingleProduct = () => {
+const SingleProduct = ({ params }: any) => {
   const dispatch = useDispatch();
 
-  const params = useParams();
   const { prodname } = params;
 
   const singleProd = useSelector(
@@ -34,8 +32,6 @@ const SingleProduct = () => {
     text,
     _id,
   } = { ...singleProd };
-
-  console.log(price);
 
   const [productInfo, setProductInfo] = useState({ likes: likes });
 

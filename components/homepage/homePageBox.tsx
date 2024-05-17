@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CartIcon from "../Images/CartIcon";
 import { formatPrice } from "../../helpers/index";
-import ProductImage from "../../components/Images/ProductImage";
+import ProductImage from "../Images/ProductImage";
 
 const FrontPageBox = (props: {
   imgUrl: string;

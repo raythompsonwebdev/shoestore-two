@@ -37,6 +37,7 @@ src/app/api/authOptions/
 
 spare/
 app/api/jwt-test/
+app/api/cartitems/
 app/api/protected/
 app/(protected)/server/
 app/actions.ts

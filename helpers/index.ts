@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { signIn } from "next-auth/react";
 import { LoginUserParams } from "../types";
 
@@ -15,11 +15,11 @@ export const loginUser = async ({ email, password }: LoginUserParams) => {
 
 export const formatPrice = (price: number) => {
   if (!price) {
-    return 'number is needed'
+    return "number is needed";
   }
-  const result = new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency: 'GBP',
-  }).format(price)
-  return result
-}
+  const result = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  }).format(price);
+  return result;
+};

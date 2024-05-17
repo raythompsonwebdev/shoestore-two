@@ -1,24 +1,16 @@
-import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 export const metadata = {
   title: "Thank You Page",
   description: "Thank You Page",
 };
 
-const Thankyou = () => {
-  const router = useRouter();
-
-  const { username, useremail } = router.query;
+const Thankyou = ({ params }: any) => {
+  const { username, useremail } = params;
 
   return (
     <>
-      <Head>
-        <title>Thank You</title>
-        <meta name="description" content="Error page" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main id="main-content" className="clearfix">
         <h1 id="main-content-title">Your Message Has Been Received</h1>
 

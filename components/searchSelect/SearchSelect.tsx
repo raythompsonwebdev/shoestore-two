@@ -1,23 +1,23 @@
 "use client";
-import React, { Key } from 'react'
-import { SelectBarType } from '../../types/index'
+import React, { Key } from "react";
+import { SelectBarType } from "../../types/index";
 
 interface SearchSelector {
-  selectBarData: SelectBarType[]
-  changesOrders: (orderbyval: string, dir: string) => void
-  handleChange: (selected: string) => void
-  orderByVal: string
-  orderDir: string
+  selectBarData: SelectBarType[];
+  changesOrders: (orderbyval: string, dir: string) => void;
+  handleChange: (selected: string) => void;
+  orderByVal: string;
+  orderDir: string;
 }
 
 const SearchSelect = (props: SearchSelector) => {
-  const { selectBarData, changesOrders, handleChange, orderDir } = props
+  const { selectBarData, changesOrders, handleChange, orderDir } = props;
 
   const onItemChange = (e: { target: { value: string } }) => {
-    const { value } = e.target
-    handleChange(value)
-    changesOrders(value, orderDir)
-  }
+    const { value } = e.target;
+    handleChange(value);
+    changesOrders(value, orderDir);
+  };
 
   return (
     <form className="search-products">
@@ -32,9 +32,9 @@ const SearchSelect = (props: SearchSelector) => {
           <optgroup label={options.value} key={options.id}>
             {options.options.map(
               (option: {
-                id: Key | number
-                value: string | undefined
-                displayValue: string | undefined
+                id: Key | number;
+                value: string | undefined;
+                displayValue: string | undefined;
               }) => (
                 <option key={option.id} value={option.value}>
                   {option.displayValue}
@@ -45,7 +45,7 @@ const SearchSelect = (props: SearchSelector) => {
         ))}
       </select>
     </form>
-  )
-}
+  );
+};
 
-export default SearchSelect
+export default SearchSelect;

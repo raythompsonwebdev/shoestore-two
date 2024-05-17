@@ -10,7 +10,6 @@ import {
   getAccordianStatus,
 } from "../features/accordian/accordianSlice";
 import {
-  // productAdded,
   selectAllProducts,
   fetchProducts,
   getProductsStatus,
@@ -22,12 +21,10 @@ export default function Home() {
   // get Products
   const productItems = useSelector(selectAllProducts);
   const productItemsStatus = useSelector(getProductsStatus);
-  //const productItemsError = useAppSelector(getProductsError);
 
   // acoordian data
   const accordianItems = useSelector(selectAllAccordian);
   const accordianDataStatus = useSelector(getAccordianStatus);
-  //const accordianDataError = useAppSelector(getAccordianError);
 
   useEffect(() => {
     if (productItemsStatus === "idle") {

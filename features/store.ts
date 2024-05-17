@@ -18,7 +18,7 @@ import { middleware } from "./middleware";
 
 export const store = configureStore({
   reducer: {
-    cart: cartReducer,
+    cartItems: cartReducer,
     products: productsReducer,
     accordian: accordianReducer,
     searchdata: searchdataReducer,
