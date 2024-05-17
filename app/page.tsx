@@ -68,7 +68,7 @@ export default function Home() {
         <section id="right-content-section" className="group">
           <BannerImg />
 
-          <h1 id="right-content-section-header">Featured</h1>
+          <h1 id="right-content-section-header">FEATURED</h1>
           <Suspense fallback="Loading......">
             <HomePageBoxes productData={productItems} />
           </Suspense>

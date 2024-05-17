@@ -1,18 +1,23 @@
+"use client";
 
-import React from 'react';
+import React from "react";
 import MenuToggleBtn from "./menuToggleBtn";
 import MobileMenu from "./mobileMenu";
 import SignInBox from "./singInBox";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function MainNav() {
+  const pathname = usePathname();
   return (
     <nav id="main-nav" role="navigation">
       <ul id="inner-nav">
         <li className="inner-nav-item">
           <Link
             href="/"
-            className="inner-nav-link"
+            className={
+              pathname == "/" ? "inner-nav-link is_active" : "inner-nav-link"
+            }
             title="Home Page"
             aria-label="Home Page"
           >
@@ -22,7 +27,11 @@ export default function MainNav() {
         <li className="inner-nav-item">
           <Link
             href="/newproducts"
-            className="inner-nav-link"
+            className={
+              pathname == "/newproducts"
+                ? "inner-nav-link is_active"
+                : "inner-nav-link"
+            }
             title="new products page"
             aria-label="new products page"
           >
@@ -32,7 +41,11 @@ export default function MainNav() {
         <li className="inner-nav-item">
           <Link
             href="/specials"
-            className="inner-nav-link"
+            className={
+              pathname == "/specials"
+                ? "inner-nav-link is_active"
+                : "inner-nav-link"
+            }
             title="specials page"
             aria-label="specials page"
           >
@@ -42,7 +55,11 @@ export default function MainNav() {
         <li className="inner-nav-item">
           <Link
             href="/allproducts"
-            className="inner-nav-link"
+            className={
+              pathname == "/allproducts"
+                ? "inner-nav-link is_active"
+                : "inner-nav-link"
+            }
             title="all products page"
             aria-label="all products page"
           >
@@ -52,7 +69,11 @@ export default function MainNav() {
         <li className="inner-nav-item">
           <Link
             href="/faqs"
-            className="inner-nav-link"
+            className={
+              pathname == "/faqs"
+                ? "inner-nav-link is_active"
+                : "inner-nav-link"
+            }
             title="faqs page"
             aria-label="faqs page"
           >
@@ -62,7 +83,11 @@ export default function MainNav() {
         <li className="inner-nav-item">
           <Link
             href="/contact"
-            className="inner-nav-link"
+            className={
+              pathname == "/contact"
+                ? "inner-nav-link is_active"
+                : "inner-nav-link"
+            }
             title="contact page"
             aria-label="contact page"
           >

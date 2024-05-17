@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React from "react";
 
 const myComponentStyle = {
   backgroundImage: "url('/images/form-bg-comp.png')",
@@ -11,7 +11,10 @@ const myComponentStyle = {
 export default function FindShoes() {
   return (
     <article id="front-page-form-container" style={myComponentStyle}>
-      <h1 id="front-page-form-header"> FIND YOUR SHOES </h1>
+      <h1 id="front-page-form-header">
+        {" "}
+        FIND <br /> YOUR SHOES{" "}
+      </h1>
       <form id="front-page-form" action="" method="get">
         <select name="gender">
           <option value="Male">Mens</option>
