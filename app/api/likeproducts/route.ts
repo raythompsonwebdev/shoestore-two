@@ -4,7 +4,10 @@ import sanitize from "mongo-sanitize";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   if (request.method !== "POST") {
-    return NextResponse.json({ message: "GET requests not allowed" });
+    return NextResponse.json(
+      { message: "GET requests not allowed" },
+      { status: 500 }
+    );
   }
 
   const body = await request.json();
@@ -29,8 +32,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const updatedProductInfo = await db
       .collection("products")
       .findOne({ name: sanitizedProduct });
-    return NextResponse.json(updatedProductInfo);
+    return NextResponse.json(updatedProductInfo, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ message: `${err}` });
+    return NextResponse.json({ message: `${err}` }, { status: 500 });
   }
 }

@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import clientPromise from "../../../lib/mongodb";
 
-export async function POST(request: Request) {
-  console.log(request.body);
-
-  if (request.method === "GET") {
-    return NextResponse.json({ message: "Only GET requests allowed" });
+export async function POST(request: NextRequest) {
+  if (request.method !== "POST") {
+    return NextResponse.json(
+      { message: "Only POST requests allowed" },
+      { status: 500 }
+    );
   }
 
   try {
@@ -23,7 +24,7 @@ export async function POST(request: Request) {
 
     const productsearch = JSON.parse(JSON.stringify(results));
 
-    return NextResponse.json(productsearch);
+    return NextResponse.json(productsearch, { status: 200 });
   } catch (err) {
     return NextResponse.json({ message: `${err}` }, { status: 404 });
   }

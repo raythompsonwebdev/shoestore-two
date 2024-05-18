@@ -39,7 +39,9 @@ export default function RegisterForm() {
 
       const result = await response.json();
 
-      if (result) {
+      if (result.error) {
+        setError(result.error);
+      } else {
         router.push("/thankyou");
       }
     } catch (err) {
@@ -47,10 +49,15 @@ export default function RegisterForm() {
     }
   };
 
+  console.log(error);
+
   return (
     <form id="contact-form" onSubmit={submit}>
-      <span id="form-error" className="hide-error">
-        {error ? error : ""}
+      <span
+        id="form-error"
+        className={error === "" ? "hide-error" : "show-error"}
+      >
+        {error}
       </span>
       <ul id="contact-form-fields">
         <li className="contact-form-item">

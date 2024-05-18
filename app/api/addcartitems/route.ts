@@ -37,8 +37,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
     //   .collection('cartItems')
     //   .findOne({ product })
 
-    return NextResponse.json({ cartItemsResult: result?.cartitems });
+    return NextResponse.json(
+      { cartItemsResult: result?.cartitems },
+      { status: 200 }
+    );
   } catch (err) {
-    return NextResponse.json({ message: err });
+    return NextResponse.json({ message: err }, { status: 500 });
   }
 }

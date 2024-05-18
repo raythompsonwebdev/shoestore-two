@@ -1,13 +1,21 @@
+"use client";
+
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
-export const metadata = {
-  title: "Thank You Page",
-  description: "Thank You Page",
-};
+// export const metadata = {
+//   title: "Thank You Page",
+//   description: "Thank You Page",
+// };
 
-const Thankyou = ({ params }: any) => {
-  const { username, useremail } = params;
+const Thankyou = () => {
+  const searchParams = useSearchParams();
+
+  const user = searchParams.get("user");
+
+  // const { username, useremail } = searchParams;
+
+  console.log(user);
 
   return (
     <>
@@ -15,13 +23,8 @@ const Thankyou = ({ params }: any) => {
         <h1 id="main-content-title">Your Message Has Been Received</h1>
 
         <section id="main-inner-content" className="group">
-          <h3 className="context-title">
-            Thank you for your message {username}
-          </h3>
-          <h3 className="context-title">
-            Thank you for your message {useremail}
-          </h3>
-          <p>An email has been sent to your email address {useremail}</p>
+          <h2 className="context-title">Thank you for your message</h2>
+          <p>An email has been sent to your email address </p>
           <p>
             Click
             <Link href="/" aria-label="go to home page link">

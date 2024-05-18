@@ -3,7 +3,10 @@ import clientPromise from "../../../lib/mongodb";
 
 export async function GET(request: Request) {
   if (request.method !== "GET") {
-    return NextResponse.json({ message: "Only GET requests allowed" });
+    return NextResponse.json(
+      { message: "Only GET requests allowed" },
+      { status: 500 }
+    );
   }
 
   try {
@@ -18,8 +21,8 @@ export async function GET(request: Request) {
 
     const selectresults = JSON.parse(JSON.stringify(resultsthree));
 
-    return NextResponse.json({ selectresults });
+    return NextResponse.json({ selectresults }, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ message: `${err}` });
+    return NextResponse.json({ message: `${err}` }, { status: 404 });
   }
 }

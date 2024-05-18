@@ -28,12 +28,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const userExists = await User.findOne({ email }).exec();
 
     if (userExists !== null) {
-      return NextResponse.json({ error: "User Already exists" });
+      return NextResponse.json(
+        { error: "User Already exists" },
+        { status: 403 }
+      );
     } else {
       if (password.length < 10)
-        return NextResponse.json({
-          error: "Password should be 10 characters long",
-        });
+        return NextResponse.json(
+          {
+            error: "Password should be 10 characters or longer",
+          },
+          { status: 403 }
+        );
 
       // Hash password
       const hashpassword = await hashPassword(password);
@@ -48,12 +54,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
         cartitems: [],
       });
 
-      return NextResponse.json({
-        success: true,
-        user,
-      });
+      return NextResponse.json(
+        {
+          success: true,
+          user,
+        },
+        { status: 200 }
+      );
     }
   } catch (err) {
-    return NextResponse.json({ message: `${err}` });
+    return NextResponse.json({ message: `${err}` }, { status: 200 });
   }
 }
