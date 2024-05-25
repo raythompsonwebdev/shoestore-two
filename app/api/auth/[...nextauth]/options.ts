@@ -4,7 +4,6 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../../lib/mongodb";
 import connectToMongoose from "../../../../lib/dbConnect";
 import User from "../../../../models/users";
-// import { IUser } from "../../../../types";
 import { comparePassword } from "../../../../lib/hashPassword";
 
 export const authOptions: NextAuthOptions = {
@@ -26,7 +25,7 @@ export const authOptions: NextAuthOptions = {
 
         if (!user) {
           throw new Error(
-            "Invalid credentials! Please enter valid credentials"
+            "Invalid credentials! Please enter valid email address"
           );
         }
 

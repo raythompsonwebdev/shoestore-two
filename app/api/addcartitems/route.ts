@@ -17,8 +17,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   //const cartItemId = cartResults.map((id: any) => id._id);
 
-  //console.log(cartItemId);
-
   const useremail = sanitize(cartUser.email);
 
   try {

@@ -20,7 +20,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const productsInfo = await db
       .collection("products")
       .findOne({ name: sanitizedProduct, likes });
-    // The optional chaining operator (?.)-fixes object is possible null error for productsInfo variable. The non-null assertion operator (!.) or the nullish coalescing operator (??) & if (typeof myName === 'string').
+    // The optional chaining operator (?.)-fixes object is possible null error for productsInfo variable.
+    // The non-null assertion operator (!.) or the nullish coalescing operator (??) & if (typeof myName === 'string').
     await db.collection("products").updateOne(
       { name: sanitizedProduct },
       {

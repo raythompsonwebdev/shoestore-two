@@ -9,7 +9,7 @@ export default function AccessDenied() {
       <h1 id="main-content-title">You're Not Signed In</h1>
       <section id="main-inner-content" className="group">
         <h2 className="main-inner-content-title">
-          You must be signed in to view your profile page{" "}
+          You must be signed in to view profile page{" "}
           <Link
             href="/api/auth/signin"
             onClick={(e) => {

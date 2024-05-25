@@ -1,26 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-
-// export const metadata = {
-//   title: "Thank You Page",
-//   description: "Thank You Page",
-// };
 
 const Thankyou = () => {
-  const searchParams = useSearchParams();
-
-  const user = searchParams.get("user");
-
-  // const { username, useremail } = searchParams;
-
-  console.log(user);
-
   return (
     <>
       <main id="main-content" className="clearfix">
-        <h1 id="main-content-title">Your Message Has Been Received</h1>
+        <h1 id="main-content-title">Your Details Have Been Received</h1>
 
         <section id="main-inner-content" className="group">
           <h2 className="context-title">Thank you for your message</h2>

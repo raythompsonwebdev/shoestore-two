@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>("");
   const router = useRouter();
 
   const handleEmails = (e: { target: { value: SetStateAction<string> } }) => {
@@ -26,8 +27,9 @@ export default function LoginForm() {
       const loginRes = await loginUser({ email, password });
 
       if (loginRes && !loginRes.ok) {
-        console.log(loginRes.error || "Login OK");
+        setError(loginRes.error);
       } else {
+        setError("OK");
         router.push("/profile");
       }
     } catch (error) {
@@ -40,6 +42,12 @@ export default function LoginForm() {
 
   return (
     <form id="contact-form" onSubmit={submit}>
+      <span
+        id="form-error"
+        className={error === "" ? "hide-error" : "show-error"}
+      >
+        {error}
+      </span>
       <ul id="contact-form-fields">
         <li className="contact-form-item">
           <label htmlFor="email">E-mail:&#32; </label>

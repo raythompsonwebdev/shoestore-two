@@ -12,15 +12,14 @@ const NotFound = () => {
     <>
       <main id="main-content" className="clearfix">
         <h1 id="main-content-title">Not Found</h1>
-
         <section id="main-inner-content" className="group">
-          <p>
+          <h2 className="main-inner-content-title">
             Click
             <Link href="/" aria-label="go to home page link">
               here
             </Link>
             to get back to the home page.
-          </p>
+          </h2>
         </section>
       </main>
     </>

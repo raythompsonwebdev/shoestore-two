@@ -1,10 +1,9 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "../../features/store";
 import Basket from "../../components/Basket";
-import { selectAllCartItems, addToCart } from "../../features/cart/cartSlice";
-import { getServerSession } from "next-auth/next";
+import { selectAllCartItems } from "../../features/cart/cartSlice";
 
 const Cart = () => {
   const { cartItems } = useSelector(selectAllCartItems);
@@ -26,9 +25,8 @@ const Cart = () => {
             },
           });
           const result = await res.json();
-          console.log(result);
 
-          //return result;
+          return result;
         };
 
         addData();
@@ -42,9 +40,9 @@ const Cart = () => {
     return (
       <>
         <main id="main-content" className="clearfix">
-          <h1 id="main-content-title">Cart - Logged In</h1>
-          <p>{user ? user.name : "name not available"}</p>
-          <p>{user ? user.email : "email not available"}</p>
+          <h1 id="main-content-title">
+            Cart - User Logged In - {user ? user.name : "name not available"}
+          </h1>
           <Basket cartItems={cartItems}></Basket>
         </main>
       </>

@@ -3,14 +3,13 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../api/auth/[...nextauth]/options";
 import AccessDenied from "../../../components/access-denied";
 import Image from "next/image";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);
   //cookies
-  const cookieStore = cookies();
-  const sessionToken = cookieStore.get("next-auth.session-token");
-  console.log(sessionToken, session);
+  // const cookieStore = cookies();
+  // const sessionToken = cookieStore.get("next-auth.session-token");
 
   return session !== null ? (
     <>
@@ -37,9 +36,8 @@ export default async function Profile() {
           )}
           {/* <Image src={image} alt="Profile" width={200} height={200} /> */}
           <figcaption id="profile-image-text">
-            <p>Username : {session.user.name}</p>
+            <h2>Welcome {session.user.name}</h2>
             <br />
-            <p>Email :{session.user.email}</p>
           </figcaption>
         </figure>
       </main>

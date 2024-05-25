@@ -11,22 +11,28 @@ export default function RegisterForm() {
 
   const router = useRouter();
 
-  const handleUserName = (e: { target: { value: SetStateAction<string> } }) => {
+  const handleUserName = (e: {
+    target: { value: SetStateAction<string> };
+  }): void => {
     const { value } = e.target;
     setUserName(value);
   };
 
-  const handleEmails = (e: { target: { value: SetStateAction<string> } }) => {
+  const handleEmails = (e: {
+    target: { value: SetStateAction<string> };
+  }): void => {
     const { value } = e.target;
     setEmail(value);
   };
 
-  const handlePassword = (e: { target: { value: SetStateAction<string> } }) => {
+  const handlePassword = (e: {
+    target: { value: SetStateAction<string> };
+  }): void => {
     const { value } = e.target;
     setPassword(value);
   };
 
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
       const response = await fetch("/api/registerUser", {
@@ -37,12 +43,23 @@ export default function RegisterForm() {
         body: JSON.stringify({ name: username, email: useremail, password }),
       });
 
+      if (!response.ok) {
+        //console.log(response.statusText);
+        setError(response.statusText);
+      }
+
       const result = await response.json();
 
       if (result.error) {
         setError(result.error);
-      } else {
+      }
+
+      if (result.sucess) {
         router.push("/thankyou");
+        // router.push({
+        //   pathname : "/thankyou",
+        //   query: { params: user },
+        // });
       }
     } catch (err) {
       console.error("not working : " + err);

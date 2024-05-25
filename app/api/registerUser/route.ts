@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import connectToMongoose from "../../../lib/dbConnect";
 import clientPromise from "../../../lib/mongodb";
 import User from "../../../models/users";
-// import { IUser } from "../../../types/index";
+
 import { hashPassword } from "../../../lib/hashPassword";
 import sanitize from "mongo-sanitize";
 
