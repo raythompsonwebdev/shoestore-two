@@ -9,7 +9,6 @@ export async function GET(request: NextRequest) {
     );
   }
   try {
-    //await clientPromise
     const client = await clientPromise;
     const db = client.db("shoestore");
 

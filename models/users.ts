@@ -7,14 +7,14 @@ const UserSchema = new Schema({
   name: {
     type: String,
     required: [true, "Full name is required"],
-    minLength: [4, "Full name should be at least 4 characters long"],
+    minLength: [5, "Full name should be at least 5 characters long"],
     //maxLength: [30, 'Full name should be less than 30 characters'],
   },
   email: {
     type: String,
     unique: true,
     required: [true, "Email is required"],
-    minLength: [4, "Full name should be at least 2 characters long"],
+    minLength: [8, "Email should be at least 8 characters long"],
     lowercase: true,
     trim: true,
     validate: (value: string) => {

@@ -45,7 +45,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       const hashpassword = await hashPassword(password);
 
       // create new user
-      const user = await db.collection("users").insertOne({
+      const user = await User.create({
         name,
         email,
         password: hashpassword,

@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
 
     if (results.length > 0) {
       console.log(`${results.length} customers found`);
-      // Here you could build your html or put the results in some other data structure you want to work with
     } else {
       console.log(`No customers found`);
     }
