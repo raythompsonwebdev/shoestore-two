@@ -9,21 +9,6 @@ import {
   fetchProducts,
   getProductsStatus,
 } from "../../features/products/productSlice";
-import {
-  selectAllAccordian,
-  fetchAccordian,
-  getAccordianStatus,
-} from "../../features/accordian/accordianSlice";
-import {
-  getSearchData,
-  fetchSearchData,
-  getSearchBarStatus,
-} from "../../features/searchdata/searchdataSlice";
-import {
-  getSelectData,
-  fetchSelectData,
-  getSelectDataStatus,
-} from "../../features/selectdata/selectdataSlice";
 import { useSelector, useDispatch } from "../../features/store";
 
 const Allproducts = () => {
@@ -32,49 +17,16 @@ const Allproducts = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  // get Products
+
   const productData = useSelector(selectAllProducts);
   const productItemsStatus = useSelector(getProductsStatus);
   //const productItemsError = useAppSelector(getProductsError);
-
-  // acoordian data
-  const accordianItems = useSelector(selectAllAccordian);
-  const accordianDataStatus = useSelector(getAccordianStatus);
-  //const accordianDataError = useAppSelector(getAccordianError);
-
-  // searchbar data
-  const searchbarItems = useSelector(getSearchData);
-  const searchbarDataStatus = useSelector(getSearchBarStatus);
-  //const searchbarDataError = useAppSelector(getSearchBarError);
-
-  // selectbar data
-  const selectbarItems = useSelector(getSelectData);
-  const selectbarDataStatus = useSelector(getSelectDataStatus);
-  //const selectbarDataError = useAppSelector(getSelectBarError);
 
   useEffect(() => {
     if (productItemsStatus === "idle") {
       dispatch(fetchProducts());
     }
   }, [productItemsStatus, dispatch]);
-
-  useEffect(() => {
-    if (accordianDataStatus === "idle") {
-      dispatch(fetchAccordian());
-    }
-  }, [accordianDataStatus, dispatch]);
-
-  useEffect(() => {
-    if (searchbarDataStatus === "idle") {
-      dispatch(fetchSearchData());
-    }
-  }, [searchbarDataStatus, dispatch]);
-
-  useEffect(() => {
-    if (selectbarDataStatus === "idle") {
-      dispatch(fetchSelectData());
-    }
-  }, [selectbarDataStatus, dispatch]);
 
   const handleChange = (selectedSize: SetStateAction<string>): void => {
     setOrderByVal(selectedSize);
@@ -112,7 +64,7 @@ const Allproducts = () => {
   return (
     <>
       <main id="main-content" className="clearfix">
-        <SearchBar labelname="All Products" searchData={searchbarItems} />
+        <SearchBar labelname="All Products" />
 
         <button
           id="sidebar-toggle-btn"
@@ -126,7 +78,7 @@ const Allproducts = () => {
         <aside
           className={`left-side-content ${visibility ? "is-expanded" : " "}`}
         >
-          <AccordianMenu accordianData={accordianItems} />
+          <AccordianMenu />
         </aside>
 
         <main id="right-content-section" className="group">
@@ -135,7 +87,6 @@ const Allproducts = () => {
             orderDir={orderDir}
             changesOrders={changesOrders}
             handleChange={handleChange}
-            selectBarData={selectbarItems || " "}
           />
           <AllProductBoxes productData={filteredApts} />
         </main>

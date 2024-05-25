@@ -4,11 +4,7 @@ import BannerImg from "../components/homepage/bannerImg";
 import HomePageBoxes from "../components/homepage/homepageBoxes";
 import FindShoes from "../components/homepage/FindShoes";
 import AccordianMenu from "../components/accordianMenu";
-import {
-  selectAllAccordian,
-  fetchAccordian,
-  getAccordianStatus,
-} from "../features/accordian/accordianSlice";
+
 import {
   selectAllProducts,
   fetchProducts,
@@ -22,22 +18,12 @@ export default function Home() {
   const productItems = useSelector(selectAllProducts);
   const productItemsStatus = useSelector(getProductsStatus);
 
-  // acoordian data
-  const accordianItems = useSelector(selectAllAccordian);
-  const accordianDataStatus = useSelector(getAccordianStatus);
-
   useEffect(() => {
     if (productItemsStatus === "idle") {
       dispatch(fetchProducts());
     }
     // dispatch(productAdded);
   }, [productItemsStatus, dispatch]);
-
-  useEffect(() => {
-    if (accordianDataStatus === "idle") {
-      dispatch(fetchAccordian());
-    }
-  }, [accordianDataStatus, dispatch]);
 
   const [visibility, setVisibility] = useState<boolean>(false);
 
@@ -62,7 +48,7 @@ export default function Home() {
           className={`left-side-content ${visibility ? "is-expanded" : " "}`}
         >
           <FindShoes />
-          <AccordianMenu accordianData={accordianItems} />
+          <AccordianMenu />
         </aside>
 
         <section id="right-content-section" className="group">

@@ -1,5 +1,5 @@
 export interface IUser {
-  id: string | number;
+  _id: string | number;
   name: string;
   email: string;
   password: string;
@@ -46,13 +46,11 @@ export interface ProductType {
   qty: number;
 }
 export interface AccordianType {
-  _id: string;
   id: number;
   title: string | null;
   items: Array<string>;
 }
 export interface SearchBarType {
-  _id: string;
   id: number;
   name: string;
   options: Array<{
@@ -62,7 +60,6 @@ export interface SearchBarType {
   }>;
 }
 export interface SelectBarType {
-  _id: string;
   id: number;
   name: string;
   value: string;

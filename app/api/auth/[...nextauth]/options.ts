@@ -18,8 +18,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         await connectToMongoose();
-        // const client = await clientPromise;
-        // const db = client.db("shoestore");
 
         // // confirm if user email already exists.
         const user = await User.findOne({

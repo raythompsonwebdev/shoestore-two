@@ -10,6 +10,7 @@ export default async function Profile() {
   //cookies
   const cookieStore = cookies();
   const sessionToken = cookieStore.get("next-auth.session-token");
+  console.log(sessionToken, session);
 
   return session !== null ? (
     <>

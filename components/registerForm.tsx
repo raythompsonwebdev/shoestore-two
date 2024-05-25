@@ -49,8 +49,6 @@ export default function RegisterForm() {
     }
   };
 
-  console.log(error);
-
   return (
     <form id="contact-form" onSubmit={submit}>
       <span

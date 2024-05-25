@@ -5,9 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import productsReducer from "./products/productSlice";
 import cartReducer from "./cart/cartSlice";
-import accordianReducer from "./accordian/accordianSlice";
-import searchdataReducer from "./searchdata/searchdataSlice";
-import selectdataReducer from "./selectdata/selectdataSlice";
 import {
   useSelector as useReduxSelector,
   useDispatch as useReduxDispatch,
@@ -20,9 +17,6 @@ export const store = configureStore({
   reducer: {
     cartItems: cartReducer,
     products: productsReducer,
-    accordian: accordianReducer,
-    searchdata: searchdataReducer,
-    selectdata: selectdataReducer,
     //[apiSlice.reducerPath]: apiSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>

@@ -54,18 +54,17 @@ const SearchProduct = () => {
               <p className="product-page-title">{shoes.gender}</p>
               <p className="product-page-title">{shoes.size}</p>
               <p className="product-page-title">{shoes.color}</p>
-              <p className="product-page-title">
-                <Link
-                  href={`/shoes/${shoes.name}`}
-                  className="product-box-icon-link"
-                >
-                  <CartIcon
-                    src={shoes.cartImg}
-                    alt={"shopping-cart icon"}
-                    cname={"product-box-icon-link"}
-                  />
-                </Link>
-              </p>
+
+              <Link
+                href={`/shoes/${shoes.name}`}
+                className="product-box-icon-link"
+              >
+                <CartIcon
+                  src={shoes.cartImg}
+                  alt={"shopping-cart icon"}
+                  cname={"product-box-icon-link"}
+                />
+              </Link>
             </figcaption>
           </figure>
         ))}
