@@ -20,7 +20,7 @@
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
     "bcryptjs": "^2.4.3",
-    "eslint": "9.2.0",
+    "eslint": "^8.57.0",
     "jsonwebtoken": "^9.0.2",
     "mongo-sanitize": "^1.1.0",
     "mongodb": "^5.9.2",
