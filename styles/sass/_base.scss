@@ -1,3 +1,5 @@
+@use "variables";
+
 * html .clearfix {
   height: 1%;
 }
@@ -93,13 +95,13 @@ th {
 }
 
 a {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   font-size: 100%;
   text-decoration: none;
 }
 
 h1 {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   font-size: 1em;
 }
 

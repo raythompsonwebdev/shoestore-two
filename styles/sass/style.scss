@@ -1,6 +1,6 @@
-@import "partials/variables";
-@import "partials/base";
-// @import "partials/fonts";
+@use "variables";
+@use "base";
+@use "fonts";
 
 body {
   line-height: 1;
@@ -31,12 +31,12 @@ body {
 }
 
 #wrapper {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   width: 100%;
   padding: 0;
   margin: 0;
   display: block;
-  background-color: $color-white;
+  background-color: variables.$color-white;
 }
 
 /* toggle butttons */
@@ -47,9 +47,9 @@ body {
   top: 0.25em;
   height: 45px;
   width: 15%;
-  background-color: $color-white;
-  border: 1px solid $color-orange;
-  color: $color-orange;
+  background-color: variables.$color-white;
+  border: 1px solid variables.$color-orange;
+  color: variables.$color-orange;
   line-height: 45px;
   text-align: center;
   font-size: 0.8em;
@@ -57,10 +57,10 @@ body {
 }
 
 #sidebar-toggle-btn:hover {
-  background-color: $color-orange;
+  background-color: variables.$color-orange;
   cursor: pointer;
-  border: 2px solid $header-color;
-  color: $color-white;
+  border: 2px solid variables.$header-color;
+  color: variables.$color-white;
   font-weight: bold;
 }
 
@@ -74,16 +74,16 @@ body {
   height: 45px;
   line-height: 45px;
   text-align: center;
-  background-color: $color-orange;
-  border: 1px solid $color-black;
-  color: $color-black;
+  background-color: variables.$color-orange;
+  border: 1px solid variables.$color-black;
+  color: variables.$color-black;
   font-size: 0.8em;
 }
 
 #menu-toggle-btn:hover {
-  background-color: $color-black;
+  background-color: variables.$color-black;
   cursor: pointer;
-  color: $color-white;
+  color: variables.$color-white;
   border: none;
 }
 
@@ -158,12 +158,12 @@ svg {
   font-size: 0.7em;
   text-decoration: none;
   text-align: center;
-  color: $login-color;
+  color: variables.$login-color;
   letter-spacing: 0.01em;
-  border-right: 1px solid $login-color;
+  border-right: 1px solid variables.$login-color;
 }
 .signin-box-link:hover {
-  color: $color-orange;
+  color: variables.$color-orange;
   font-weight: bold;
 }
 .signin-box-link:last-of-type {
@@ -190,7 +190,7 @@ svg {
   padding: 0;
   text-align: center;
   height: 40px;
-  color: $color-black;
+  color: variables.$color-black;
   line-height: 40px;
   display: block;
   transition: all ease 0.2s;
@@ -199,29 +199,29 @@ svg {
   text-decoration: none;
   font-weight: bold;
   &:hover {
-    background-color: $color-white;
+    background-color: variables.$color-white;
     text-decoration: none;
     display: block;
     border-radius: 3px 3px 0 0;
-    box-shadow: 0 -2px 2px 0 $color-black;
-    color: $color-orange;
+    box-shadow: 0 -2px 2px 0 variables.$color-black;
+    color: variables.$color-orange;
   }
 }
 
 .is_active {
-  background-color: $color-white;
+  background-color: variables.$color-white;
   text-decoration: none;
   display: block;
   border-radius: 3px 3px 0 0;
-  box-shadow: 0 -2px 2px 0 $color-black;
-  color: $color-orange;
+  box-shadow: 0 -2px 2px 0 variables.$color-black;
+  color: variables.$color-orange;
 }
 
 #inner-nav > .selected {
   a:link,
   a:visited,
   a:hover {
-    background-color: $color-white;
+    background-color: variables.$color-white;
   }
 }
 
@@ -230,7 +230,7 @@ svg {
   transition: all ease 0.2s;
   display: block;
   width: 75%;
-  background: $color-black;
+  background: variables.$color-black;
   position: fixed;
   z-index: 4;
   height: 290px;
@@ -258,8 +258,8 @@ svg {
   display: block;
   float: none;
   text-align: center;
-  color: $color-black;
-  background-color: $color-orange;
+  color: variables.$color-black;
+  background-color: variables.$color-orange;
   text-decoration: none;
 }
 .mobile-nav-item .mobile-nav-link:hover {
@@ -267,13 +267,13 @@ svg {
   display: block;
   border-radius: none;
   box-shadow: none;
-  background-color: $color-black;
-  color: $color-white;
+  background-color: variables.$color-black;
+  color: variables.$color-white;
   border-bottom: none;
 }
 .mobile-nav-item .mobile-nav-link:visited {
-  background-color: $color-white;
-  color: $color-black;
+  background-color: variables.$color-white;
+  color: variables.$color-black;
 }
 
 /* select search categories */
@@ -287,13 +287,13 @@ svg {
 #search-category-form > fieldset .search-category-btn {
   flex: 1 0 auto;
   width: 100%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   height: 35px;
   line-height: 35px;
   font-size: 1.25em;
   margin: 0;
-  background-color: $color-black;
-  color: $color-white;
+  background-color: variables.$color-black;
+  color: variables.$color-white;
   border: 0;
   padding: 0;
   text-align: center;
@@ -304,18 +304,18 @@ svg {
   }
 }
 #search-category-form > fieldset .search-category-btn :hover {
-  background-color: $color-white;
-  color: $color-black;
+  background-color: variables.$color-white;
+  color: variables.$color-black;
   cursor: pointer;
   font-weight: bold;
 }
 #search-category-form {
-  color: $color-white;
-  background-color: $color-orange;
+  color: variables.$color-white;
+  background-color: variables.$color-orange;
   margin: 0;
   padding: 0.25em;
   height: auto;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin-bottom: 0.5em;
 }
 #search-category-form > fieldset {
@@ -344,16 +344,16 @@ svg {
 }
 
 #search-category-form > fieldset ::placeholder {
-  color: $color-black;
+  color: variables.$color-black;
 }
 
 #search-category-form > fieldset .search-category-input {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   flex: 1 0 auto;
   width: 100%;
   font-size: 0.85em;
   margin: 0.25em 0;
-  color: $content-color2;
+  color: variables.$content-color2;
   line-height: 35px;
   height: 35px;
 }
@@ -363,7 +363,7 @@ svg {
   min-height: 600px;
   width: 99%;
   margin: 0 0.5%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
 }
 .main-content-text {
   padding: 0;
@@ -374,12 +374,12 @@ svg {
 
 /* main content header */
 #main-content-title {
-  background-color: $content-color;
-  font-family: $font-list;
+  background-color: variables.$content-color;
+  font-family: variables.$font-list;
   width: 100%;
   margin: 1% 0 0;
   height: 40px;
-  color: $color-white;
+  color: variables.$color-white;
   font-size: 1em;
   text-indent: 1%;
   line-height: 40px;
@@ -392,7 +392,7 @@ svg {
   margin-top: 2em;
   min-height: 400px;
   width: 100%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   display: flex;
   flex-flow: column;
   align-content: center;
@@ -403,7 +403,7 @@ svg {
   height: auto;
   flex: 0 1 auto;
   width: 75%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin: 15px auto;
 }
 .other-products-box > .other-product-box-img {
@@ -424,7 +424,7 @@ svg {
   flex-flow: row wrap;
 }
 .other-product-box-caption > .other-product-box-title {
-  color: $login-color;
+  color: variables.$login-color;
   line-height: 25px;
   text-transform: uppercase;
   font-size: 100%;
@@ -461,7 +461,7 @@ svg {
   padding: 0.1em;
   height: auto;
   width: 100%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin-bottom: 15px;
   display: flex;
   flex-flow: column;
@@ -550,22 +550,22 @@ svg {
 
 /* Upvotes */
 .product-page-btn {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin: 0 0.75em 0 0;
   height: 30px;
   width: 20%;
   display: block;
   font-size: 1em;
   line-height: 30px;
-  background-color: $color-orange;
-  color: $color-white;
+  background-color: variables.$color-orange;
+  color: variables.$color-white;
   border: 0;
   display: inline-block;
 }
 
 .product-page-btn:hover {
-  background-color: $color-white;
-  color: $color-orange;
+  background-color: variables.$color-white;
+  color: variables.$color-orange;
   border: 0;
   cursor: pointer;
   font-weight: bold;
@@ -573,23 +573,23 @@ svg {
 
 .addtocart-section-btn,
 .upvotes-section-btn {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin: 0;
   height: 45px;
   width: 35%;
   display: block;
   font-size: 1em;
   line-height: 30px;
-  background-color: $color-orange;
-  color: $color-white;
+  background-color: variables.$color-orange;
+  color: variables.$color-white;
   border: 0;
   float: right;
 }
 
 .addtocart-section-btn:hover,
 .upvotes-section-btn:hover {
-  background-color: $color-white;
-  color: $color-orange;
+  background-color: variables.$color-white;
+  color: variables.$color-orange;
   border: 0;
   cursor: pointer;
   font-weight: bold;
@@ -611,18 +611,18 @@ p {
   width: 92.5%;
   height: auto;
   display: block;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   float: none;
-  background-color: $color-white-bg;
+  background-color: variables.$color-white-bg;
   padding: 1%;
-  border: 2px $content-color1 solid;
+  border: 2px variables.$content-color1 solid;
   margin: 1em auto;
 }
 .contact-sidebar .contact-sidebar-header {
   font-size: 1em;
-  color: $header-color;
+  color: variables.$header-color;
   font-weight: bold;
-  background-color: $color-white;
+  background-color: variables.$color-white;
   height: auto;
   line-height: 20px;
   text-indent: 0;
@@ -630,7 +630,7 @@ p {
 .contact-sidebar .contact-sidebar-text {
   width: 100%;
   margin: auto;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   font-size: 0.9em;
   line-height: 1.8em;
 }
@@ -647,9 +647,9 @@ p {
   text-align: center;
   animation-name: example;
   animation-duration: 0.2s;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   font-size: 0.75em;
-  text-shadow: 1px 1px 1px $color-black;
+  text-shadow: 1px 1px 1px variables.$color-black;
   text-transform: uppercase;
 }
 
@@ -669,7 +669,7 @@ p {
 #contact-form {
   width: 100%;
   padding: 0;
-  font-family: $font-list;
+  font-family: variables.$font-list;
 }
 
 #login-form-fields,
@@ -725,20 +725,20 @@ p {
   outline: 0;
 }
 #submit {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin: 0;
   height: 45px;
   width: 100%;
   display: block;
   font-size: 1.2em;
   line-height: 30px;
-  background-color: $color-orange;
-  color: $color-white;
+  background-color: variables.$color-orange;
+  color: variables.$color-white;
   border: 0;
 }
 #submit:hover {
-  background-color: $color-white;
-  color: $color-orange;
+  background-color: variables.$color-white;
+  color: variables.$color-orange;
   border: 0;
   cursor: pointer;
   font-weight: bold;
@@ -748,7 +748,7 @@ p {
 #main-inner-content {
   width: 98%;
   margin: 0 auto;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   float: none;
   padding: 0;
 }
@@ -756,7 +756,7 @@ p {
 /* inner content title */
 .main-inner-content-title {
   font-weight: bold;
-  color: $color-orange;
+  color: variables.$color-orange;
   font-size: 1em;
   height: auto;
   line-height: 25px;
@@ -787,9 +787,9 @@ p {
 #profile-image-text {
   width: 100%;
   margin-left: 0;
-  font-family: $font-list;
-  background-color: $color-white-bg;
-  border: 2px $content-color1 solid;
+  font-family: variables.$font-list;
+  background-color: variables.$color-white-bg;
+  border: 2px variables.$content-color1 solid;
   padding: 0.5em;
 }
 
@@ -814,11 +814,11 @@ p {
   }
 }
 .search-products-select {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   width: 50%;
   font-size: 1em;
   margin: 0 0.5em;
-  color: $content-color2;
+  color: variables.$content-color2;
   height: 30px;
 }
 
@@ -826,7 +826,7 @@ p {
 #right-content-section-header {
   height: 35px;
   background: none;
-  color: $content-color2;
+  color: variables.$content-color2;
   margin: 1em 0;
   font-size: 1.3em;
   line-height: 35px;
@@ -842,23 +842,23 @@ p {
   width: 100%;
   margin: 0;
   padding: 1em;
-  border: solid 1px $content-color1a;
+  border: solid 1px variables.$content-color1a;
 }
 #front-page-banner > hgroup {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   position: relative;
   width: 100%;
   z-index: 3;
   padding-top: 0;
 }
 #front-page-banner > hgroup h1 {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   font-size: 1.48em;
   height: auto;
   line-height: 30px;
   width: 100%;
   font-weight: bold;
-  color: $content-color1a;
+  color: variables.$content-color1a;
   letter-spacing: -0.08em;
   text-indent: 0;
   margin: 0;
@@ -866,7 +866,7 @@ p {
 }
 #front-page-banner > hgroup h2 {
   font-size: 0.7em;
-  color: $content-color2;
+  color: variables.$content-color2;
   font-weight: bold;
   letter-spacing: 0.001em;
   text-transform: uppercase;
@@ -908,12 +908,12 @@ p {
   width: 100%;
 }
 .banner-nav-link {
-  background-color: $color-orange;
+  background-color: variables.$color-orange;
   display: block;
   height: auto;
   width: 100%;
   margin-bottom: 0.2em;
-  color: $color-white;
+  color: variables.$color-white;
   font-size: 0.7em;
   line-height: 25px;
   text-align: center;
@@ -923,8 +923,8 @@ p {
   text-decoration: none;
 }
 .banner-nav-link:hover {
-  background-color: $color-white;
-  color: $color-orange;
+  background-color: variables.$color-white;
+  color: variables.$color-orange;
   font-weight: bold;
   text-align: center;
 }
@@ -933,7 +933,7 @@ p {
 #right-content-section > .product-boxes {
   height: auto;
   width: 100%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   display: flex;
   flex-flow: column;
   align-items: flex-start;
@@ -947,7 +947,7 @@ p {
   height: auto;
   flex: 0 1 auto;
   width: 70%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin: 15px auto;
 }
 
@@ -982,7 +982,7 @@ p {
   padding-left: 0.25em;
 }
 .product-box-title {
-  color: $login-color;
+  color: variables.$login-color;
   line-height: 25px;
   text-transform: uppercase;
   font-size: 1em;
@@ -1031,7 +1031,7 @@ p {
   display: flex;
   flex-flow: column;
   width: 100%;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   margin: 0 0 1em;
 }
 .larger-product-box-image {
@@ -1054,12 +1054,12 @@ p {
 }
 .larger-product-box-title {
   grid-area: 1 / 1 / 2 / 8;
-  background-color: $color-white;
+  background-color: variables.$color-white;
   height: 45px;
   line-height: 45px;
   text-indent: 1.2em;
   font-size: 1em;
-  color: $login-color;
+  color: variables.$login-color;
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -1106,7 +1106,7 @@ p {
   cursor: pointer;
 }
 .larger-product-box-price:last-of-type {
-  color: $login-color;
+  color: variables.$login-color;
 }
 
 /* pagination search */
@@ -1118,7 +1118,7 @@ p {
   padding: 0;
 }
 .pag-search-select {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   width: 50%;
   display: inline-block;
   height: 30px;
@@ -1132,15 +1132,15 @@ p {
   width: 39%;
   display: block;
   height: 30px;
-  color: $color-black;
+  color: variables.$color-black;
   border: 0;
   line-height: 30px;
   font-size: 0.8em;
   text-transform: uppercase;
 }
 .pag-search-label:hover {
-  background-color: $color-white;
-  color: $color-orange;
+  background-color: variables.$color-white;
+  color: variables.$color-orange;
   border: 0;
   cursor: pointer;
 }
@@ -1154,8 +1154,8 @@ p {
   float: right;
 }
 .pagination-link {
-  color: $color-white;
-  background-color: $color-orange;
+  color: variables.$color-white;
+  background-color: variables.$color-orange;
   text-align: center;
   display: inline-block;
   height: 100%;
@@ -1187,7 +1187,7 @@ p {
   left: -205px;
   width: 205px;
   height: auto;
-  background-color: $color-white;
+  background-color: variables.$color-white;
   transition: all ease 0.2s;
 }
 .left-side-content.is-expanded {
@@ -1197,7 +1197,7 @@ p {
   left: 0;
   width: 205px;
   height: auto;
-  background-color: $color-white;
+  background-color: variables.$color-white;
 }
 
 /* accordian menu */
@@ -1205,8 +1205,8 @@ p {
   margin: 0;
   height: auto;
   width: 100%;
-  color: $content-color1a;
-  font-family: $font-list;
+  color: variables.$content-color1a;
+  font-family: variables.$font-list;
 }
 #accordian-nav-container {
   margin: 0;
@@ -1217,7 +1217,7 @@ p {
   text-align: left;
   border-radius: unset;
   text-transform: uppercase;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   cursor: pointer;
   background-color: #eeeeee;
   line-height: 35px;
@@ -1231,7 +1231,7 @@ p {
 /* Add a background to accordion panel  */
 .accordion:hover,
 .active {
-  background-color: $color-white;
+  background-color: variables.$color-white;
 }
 
 /* Unicode character for "minus" sign (-) */
@@ -1242,7 +1242,7 @@ p {
 /* Style the accordion panel. */
 .panel {
   padding: 0;
-  background-color: $color-white;
+  background-color: variables.$color-white;
   overflow: hidden;
   transform: scaleY(1);
   transform-origin: top;
@@ -1274,7 +1274,7 @@ p {
   width: 65%;
   height: 210px;
   margin: auto;
-  font-family: $font-list;
+  font-family: variables.$font-list;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -1283,7 +1283,7 @@ p {
 #front-page-form-header {
   font-size: 1.35em;
   background: none;
-  color: $color-white;
+  color: variables.$color-white;
   width: 100%;
   text-align: center;
   font-weight: bold;
@@ -1292,30 +1292,30 @@ p {
   padding: 0.5em;
 }
 #front-page-form select {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   width: 90%;
   height: 30px;
   font-size: 1em;
   margin: 0;
-  color: $content-color;
+  color: variables.$content-color;
   display: block;
 }
 .find-shoes {
-  font-family: $font-list;
+  font-family: variables.$font-list;
   width: 60%;
   font-size: 1.1em;
   line-height: 35px;
   margin: 0;
-  background-color: $color-orange;
+  background-color: variables.$color-orange;
   display: block;
-  color: $color-white;
+  color: variables.$color-white;
   border: 0;
   outline: none;
 }
 .find-shoes:hover {
-  color: $color-orange;
+  color: variables.$color-orange;
   display: block;
-  background-color: $color-white;
+  background-color: variables.$color-white;
   border: 0;
   outline: none;
   cursor: pointer;
@@ -1351,14 +1351,14 @@ p {
   text-align: center;
   line-height: 15px;
   height: auto;
-  color: $color-black;
+  color: variables.$color-black;
   display: block;
   font-size: 0.55em;
   text-transform: uppercase;
   text-decoration: none;
 }
 .footer-inner-nav-link:hover {
-  color: $color-orange;
+  color: variables.$color-orange;
   line-height: 50px;
   font-weight: bold;
 }
@@ -1410,7 +1410,7 @@ p {
     line-height: 25px;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -1843,7 +1843,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -1890,7 +1890,7 @@ p {
     float: left;
     width: 20%;
     margin: 10px 0;
-    font-family: $font-list;
+    font-family: variables.$font-list;
   }
   .left-side-content.is-expanded {
     position: unset;
@@ -1898,7 +1898,7 @@ p {
     left: 0;
     height: auto;
     width: 23%;
-    background-color: $color-white;
+    background-color: variables.$color-white;
   }
 
   #accordian-nav {
@@ -1918,7 +1918,7 @@ p {
   }
   .accordion:hover,
   .active {
-    background-color: $color-white;
+    background-color: variables.$color-white;
   }
   .panel {
     padding: 0;
@@ -2017,7 +2017,7 @@ p {
     font-size: 0.8em;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -2429,7 +2429,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -2476,7 +2476,7 @@ p {
     float: left;
     width: 20%;
     margin: 10px 0;
-    font-family: $font-list;
+    font-family: variables.$font-list;
   }
   .left-side-content.is-expanded {
     position: unset;
@@ -2484,7 +2484,7 @@ p {
     left: 0;
     height: auto;
     width: 23%;
-    background-color: $color-white;
+    background-color: variables.$color-white;
   }
 
   #accordian-nav {
@@ -2510,7 +2510,7 @@ p {
 
   .panel {
     padding: 0;
-    background-color: $color-white;
+    background-color: variables.$color-white;
     overflow: hidden;
     transform: scaleY(1);
     transform-origin: top;
@@ -2612,7 +2612,7 @@ p {
     font-size: 0.7em;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -3022,7 +3022,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -3093,7 +3093,7 @@ p {
   }
   .panel {
     padding: 0;
-    background-color: $color-white;
+    background-color: variables.$color-white;
     overflow: hidden;
     transform: scaleY(1);
     transform-origin: top;
@@ -3203,7 +3203,7 @@ p {
     font-size: 0.7em;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -3613,7 +3613,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -3684,7 +3684,7 @@ p {
   }
   .panel {
     padding: 0;
-    background-color: $color-white;
+    background-color: variables.$color-white;
     overflow: hidden;
     transform: scaleY(1);
     transform-origin: top;
@@ -3794,7 +3794,7 @@ p {
     font-size: 0.7em;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -4205,7 +4205,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -4276,7 +4276,7 @@ p {
   }
   .panel {
     padding: 0;
-    background-color: $color-white;
+    background-color: variables.$color-white;
     overflow: hidden;
     transform: scaleY(1);
     transform-origin: top;
@@ -4382,7 +4382,7 @@ p {
     font-size: 0.7em;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -4791,7 +4791,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -4862,7 +4862,7 @@ p {
   }
   .panel {
     padding: 0;
-    background-color: $color-white;
+    background-color: variables.$color-white;
     overflow: hidden;
     transform: scaleY(1);
     transform-origin: top;
@@ -4973,7 +4973,7 @@ p {
     font-size: 0.7em;
   }
   .signin-box-link:hover {
-    color: $color-orange;
+    color: variables.$color-orange;
     font-weight: bold;
   }
   .signin-box-link:last-of-type {
@@ -5382,7 +5382,7 @@ p {
     margin: 0;
   }
   .larger-product-box-price:last-of-type {
-    color: $login-color;
+    color: variables.$login-color;
   }
 
   #right-content-section > #pag-search {
@@ -5453,7 +5453,7 @@ p {
   }
   .panel {
     padding: 0;
-    background-color: $color-white;
+    background-color: variables.$color-white;
     overflow: hidden;
     transform: scaleY(1);
     transform-origin: top;
